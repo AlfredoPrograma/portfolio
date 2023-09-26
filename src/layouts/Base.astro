@@ -1,0 +1,34 @@
+---
+interface Props {
+    title: string;
+    description?: string;
+    keywords?: string
+}
+
+const { title, description, keywords } = Astro.props
+---
+
+<html class="font-body text-gray-100 bg-gradient-to-r from-slate-900 to-slate-700 scroll-smooth" lang="en">
+	<head>
+        <!-- Meta tags -->
+        <meta charset="utf-8" />
+        <meta name="keywords" content={keywords}>
+        <meta name="description" content={description}>
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+        
+        <!-- Favicon -->
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        
+        <!-- Google fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+        <!-- Title -->
+		<title>{title}</title>
+	</head>
+	<body>
+        <slot />
+	</body>
+</html>
