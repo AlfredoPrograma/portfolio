@@ -4,14 +4,16 @@ import Base from "@/layouts/Base.astro"
 import Container from "@/components/wrappers/Container.astro"
 import Navbar from "@/components/common/Navbar.astro"
 import SocialMediaButtons from '@/components/common/SocialMediaButtons.astro';
+import Icon from "astro-icon";
+import ButtonLink from "@/components/common/ButtonLink.astro";
 ---
 
 <Base title="Portfolio - AlfredoPrograma">
 	<Container>
 		<Navbar />
 
-		<main class="h-[calc(100vh-4rem)] flex items-center">
-			<section class="max-w-max mx-auto flex flex-col gap-10 text-center">
+		<main class="h-[calc(100vh-4rem)] flex justify-center items-center">
+			<section class="max-w-max mx-auto flex flex-col gap-10 text-center relative">
 				<header>
 					<h1 class="text-8xl font-bold">Let's build <span class="animate-colorized-ping">amazing software</span></h1>
 				</header>
@@ -22,6 +24,13 @@ import SocialMediaButtons from '@/components/common/SocialMediaButtons.astro';
 					<SocialMediaButtons />
 				</footer>
 			</section>
+
+			<footer class="absolute bottom-12">
+				<ButtonLink href="#work" class="px-8 py-3 text-lg items-center font-bold text-gray-50 rounded-full bg-gray-900 hover:bg-gray-950">
+					<Icon pack="mdi" name="chevron-down" class="w-8 h-8" />
+					<span>Meet my work</span>
+				</ButtonLink>
+			</footer>
 		</main>
 	</Container>
 </Base>
