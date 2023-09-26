@@ -1,11 +1,9 @@
 ---
-import { Icon } from 'astro-icon'
-
 import Base from "@/layouts/Base.astro"
 
 import Container from "@/components/wrappers/Container.astro"
 import Navbar from "@/components/common/Navbar.astro"
-import ButtonLink from "@/components/common/ButtonLink.astro";
+import SocialMediaButtons from '@/components/common/SocialMediaButtons.astro';
 ---
 
 <Base title="Portfolio - AlfredoPrograma">
@@ -21,26 +19,7 @@ import ButtonLink from "@/components/common/ButtonLink.astro";
 				<p class="max-w-2xl mx-auto text-2xl">My name is <span class="font-bold text-blue-500">AlfredoPrograma</span> and I'm Full Stack developer focused on create <span class="text-orange-400 font-bold">blazingly fast</span> and <span class="text-emerald-500 font-bold">highly scalable</span> web applications which solve <span class="text-red-500 font-bold">core issues</span> for business processes</p>
 
 				<footer class="grid grid-cols-4 gap-6 self-center">
-					<ButtonLink href="https://linkedin.com/in/alfredoprograma" target="_blank" class="px-12 py-3 leading-5 font-bold text-gray-50 bg-sky-500 hover:bg-sky-600">
-						<Icon pack="mdi" name="linkedin" class="w-6 h-6" />
-						<span>Linkedin</span>
-					</ButtonLink>
-
-					<ButtonLink href="https://github.com/alfredoprograma" target="_blank" class="px-12 py-3 leading-5 font-bold text-gray-50 bg-gray-900 hover:bg-black">
-						<Icon pack="mdi" name="github" class="w-6 h-6" />
-						<span>Github</span>
-					</ButtonLink>
-
-					<ButtonLink href="#gmail" target="_blank" class="px-12 py-3 leading-5 font-bold text-gray-50 bg-red-500 hover:bg-red-600">
-						<Icon pack="mdi" name="gmail" class="w-6 h-6" />
-						<span>Gmail</span>
-					</ButtonLink>
-
-					<ButtonLink href="#resume" download class="px-12 py-3 leading-5 font-bold text-slate-900 bg-gray-50 hover:bg-gray-300">
-						<Icon pack="akar-icons" name="file" class="w-6 h-6" />
-						<span>Resume</span>
-					</ButtonLink>
-
+					<SocialMediaButtons />
 				</footer>
 			</section>
 		</main>

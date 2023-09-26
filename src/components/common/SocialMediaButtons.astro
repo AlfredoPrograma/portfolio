@@ -1,0 +1,39 @@
+---
+import Icon from 'astro-icon';
+
+import { cn } from '@/utils/tw';
+import { socialMedia } from '@/constants/socialMedia'
+import type { SocialMedia } from '@/constants/socialMedia'
+
+import ButtonLink from '@/components/common/ButtonLink.astro';
+
+interface SocialMediaButton extends SocialMedia {
+    className: string
+}
+
+const socialMediaButtons: SocialMediaButton[] = [
+    {
+        ...socialMedia.Linkedin,
+        className: "text-gray-50 bg-sky-500 hover:bg-sky-600",
+    },
+    {
+        ...socialMedia.Github,
+        className: "text-gray-50 bg-gray-900 hover:bg-black",
+    },
+    {
+        ...socialMedia.Gmail,
+        className: "text-gray-50 bg-red-500 hover:bg-red-600",
+    },
+    {
+        ...socialMedia.Resume,
+        className: "text-slate-900 bg-gray-50 hover:bg-gray-300",
+    }
+]
+---
+
+{socialMediaButtons.map(({ href, text, icon, className }) => (
+    <ButtonLink target="_blank" href={href} class={cn("px-12 py-3 leading-5 font-bold", className)}>
+        <Icon pack={icon.pack} name={icon.name} class="w-6 h-6" />
+        <span>{text}</span>
+    </ButtonLink>
+))}
