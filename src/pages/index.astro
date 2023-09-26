@@ -1,7 +1,18 @@
 ---
 import Base from "@/layouts/Base.astro"
+import Container from "@/components/wrappers/Container.astro"
 ---
 
 <Base title="Portfolio - AlfredoPrograma">
-	<h1>Hello world!</h1>
+	<Container>
+		<header>
+			<nav>
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="/portfolio">Portfolio</a></li>
+					<li><a href="/blog">Blog</a></li>
+				</ul>
+			</nav>
+		</header>
+	</Container>
 </Base>
