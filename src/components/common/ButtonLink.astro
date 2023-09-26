@@ -1,0 +1,11 @@
+---
+import { cn } from '@/utils/tw';
+interface Props extends astroHTML.JSX.AnchorHTMLAttributes {}
+
+const { href, target, class: className, ...rest } = Astro.props
+
+const BASE_CLASS = "px-4 py-2 flex items-end justify-center gap-2 rounded-md transition-all transition-75"
+---
+<a {...rest} class={cn(BASE_CLASS, className)} href={href} target={target}>
+    <slot />
+</a>
