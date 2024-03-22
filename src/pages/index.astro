@@ -1,18 +1,15 @@
 ---
-import Example from "@/components/Example.astro";
-import "@fontsource-variable/outfit";
+import PageLayout from "@/layout/PageLayout.astro";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
-  </head>
-  <body class="min-h-screen font-body">
-    <h1 class="text-3xl">Astro</h1>
-    <Example />
-  </body>
-</html>
+<PageLayout title="Portfolio">
+  <div class="container mx-auto space-y-4">
+    <header class="text-center space-y-2">
+      <h1 class="text-5xl">Alfredo Alexander Arvelaez Carvajal</h1>
+    </header>
+
+    <section class="max-w-2xl mx-auto text-center">
+      <p></p>
+    </section>
+  </div>
+</PageLayout>
