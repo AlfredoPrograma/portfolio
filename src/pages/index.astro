@@ -1,15 +1,55 @@
 ---
-import PageLayout from "@/layout/PageLayout.astro";
+import PageLayout from '@/layout/PageLayout.astro';
+import { Icon } from 'astro-icon/components';
+
+const SOCIAL_MEDIA_LINKS = [
+  {
+    icon: 'lucide:github',
+    url: 'https://github.com/AlfredoPrograma/',
+  },
+  {
+    icon: 'lucide:linkedin',
+    url: 'https://www.linkedin.com/in/alfredoprograma/',
+  },
+  {
+    icon: 'lucide:instagram',
+    url: 'https://www.instagram.com/alfredo_arvelaez/',
+  },
+];
 ---
 
-<PageLayout title="Portfolio">
-  <div class="container mx-auto space-y-4">
-    <header class="text-center space-y-2">
-      <h1 class="text-5xl">Alfredo Alexander Arvelaez Carvajal</h1>
-    </header>
+<PageLayout title='Portfolio'>
+  <div class='container space-y-4'>
+    <header class='space-y-2'>
+      <nav class='flex gap-2'>
+        {
+          SOCIAL_MEDIA_LINKS.map(({ icon, url }) => (
+            <a
+              class='p-[6px] rounded-md  text-indigo-500 transition-colors hover:text-white hover:bg-indigo-500'
+              href={url}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <Icon
+                name={icon}
+                size={24}
+              />
+            </a>
+          ))
+        }
+      </nav>
 
-    <section class="max-w-2xl mx-auto text-center">
-      <p></p>
-    </section>
+      <h1 class='text-4xl space-y-2'>
+        <span class='block'>Hello! I' m Alfredo Arvelaez.</span>
+
+        <span class='block text-indigo-500 font-medium'>
+          Software engineer focused on backend development.
+        </span>
+      </h1>
+    </header>
   </div>
 </PageLayout>
+
+<section class='max-w-2xl mx-auto text-center'>
+  <p></p>
+</section>
