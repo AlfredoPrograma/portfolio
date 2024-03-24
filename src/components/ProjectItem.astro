@@ -1,13 +1,17 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { getEntries } from 'astro:content';
+import Badges from './Badges.astro';
 
 type Props = Pick<
   CollectionEntry<'projects'>['data'],
-  'title' | 'description' | 'thumbnail'
+  'title' | 'description' | 'thumbnail' | 'tags'
 > &
   Pick<CollectionEntry<'projects'>, 'slug'>;
 
-const { title, description, thumbnail, slug } = Astro.props;
+const { title, description, thumbnail, slug, tags } = Astro.props;
+
+const projectTags = await getEntries(tags);
 ---
 
 <a
@@ -23,11 +27,15 @@ const { title, description, thumbnail, slug } = Astro.props;
       />
     </figure>
 
-    <div class='space-y-1'>
-      <h4 class='text-xl font-medium text-primary'>{title}</h4>
-      <p class='text-base'>
-        {description}
-      </p>
+    <div class='space-y-4'>
+      <div class='space-y-1'>
+        <h4 class='text-xl font-medium text-primary'>{title}</h4>
+        <p class='text-base'>
+          {description}
+        </p>
+      </div>
+
+      <Badges tags={projectTags} />
     </div>
   </article>
 </a>

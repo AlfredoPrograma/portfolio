@@ -1,0 +1,22 @@
+---
+import { type CollectionEntry } from 'astro:content';
+
+type Props = {
+  tags: CollectionEntry<'tags'>[];
+};
+
+const { tags } = Astro.props;
+---
+
+<ul class='space-x-2'>
+  {
+    tags.map(({ data: { color, label } }) => (
+      <li
+        style={`background: ${color}`}
+        class='text-white text-center min-w-16 px-2 py-1 inline-block rounded-md text-base font-medium'
+      >
+        {label}
+      </li>
+    ))
+  }
+</ul>

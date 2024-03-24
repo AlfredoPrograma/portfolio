@@ -12,17 +12,20 @@ const projects = await getCollection('projects');
 
   <div class='grid gap-12 md:grid-cols-2'>
     {
-      projects.map(({ slug, data: { title, description, thumbnail } }) => (
-        <ProjectItem
-          slug={slug}
-          title={title}
-          description={description}
-          thumbnail={{
-            alt: thumbnail.alt,
-            src: thumbnail.src,
-          }}
-        />
-      ))
+      projects.map(
+        ({ slug, data: { title, description, thumbnail, tags } }) => (
+          <ProjectItem
+            slug={slug}
+            title={title}
+            description={description}
+            tags={tags}
+            thumbnail={{
+              alt: thumbnail.alt,
+              src: thumbnail.src,
+            }}
+          />
+        )
+      )
     }
   </div>
 </section>
