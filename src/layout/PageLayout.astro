@@ -22,8 +22,10 @@ const { title } = Astro.props;
     />
     <title>{title}</title>
   </head>
-  <body class='min-h-screen font-body p-4 md:py-8 md:px-12 bg-zinc-100'>
-    <main class='container max-w-4xl mx-auto space-y-4'>
+  <body
+    class='min-h-screen font-body text-lg text-content p-4 md:py-8 md:px-12 bg-zinc-100'
+  >
+    <main class='container max-w-4xl mx-auto space-y-8'>
       <slot />
     </main>
   </body>

@@ -14,7 +14,7 @@ const { title, description, thumbnail, slug } = Astro.props;
   class='block'
   href={`/projects/${slug}`}
 >
-  <article class='space-y-2'>
+  <article class='space-y-4'>
     <figure>
       <img
         src={thumbnail.src}
@@ -23,9 +23,9 @@ const { title, description, thumbnail, slug } = Astro.props;
       />
     </figure>
 
-    <div>
-      <h4 class='text-lg font-medium text-indigo-500'>{title}</h4>
-      <p class='text-sm text-gray-500'>
+    <div class='space-y-1'>
+      <h4 class='text-xl font-medium text-primary'>{title}</h4>
+      <p class='text-base'>
         {description}
       </p>
     </div>

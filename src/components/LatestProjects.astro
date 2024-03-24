@@ -7,10 +7,10 @@ const projects = await getCollection('projects');
 
 <section class='space-y-4'>
   <header>
-    <h3 class='text-indigo-500 font-medium text-2xl'>Latest projects</h3>
+    <h3 class='text-primary font-medium text-3xl'>Latest projects</h3>
   </header>
 
-  <div class='grid grid-cols-2 gap-8'>
+  <div class='grid gap-12 md:grid-cols-2'>
     {
       projects.map(({ slug, data: { title, description, thumbnail } }) => (
         <ProjectItem
