@@ -5,6 +5,197 @@ description: Functional parser library and utilities for Go inspired in Nom for 
 thumbnail:
   alt: Cute gopher programming.
   src: https://e0.pxfuel.com/wallpapers/556/782/desktop-wallpaper-golang-golang-gopher.jpg 
+  figcaption: Cute gopher face zooming in. 
 tags:
   - go
 ---
+
+import SocialMedia from '@/components/SocialMedia.astro'
+
+**Hey there!** Welcome to another project review. This time we are going to take a look at **Gom**, a functional parser combinators library for Go inspired in [Nom](https://github.com/rust-bakery/nom) crate for Rust.
+
+## Wait... What is a parser combinator? 🤔
+
+Let's start by defining what **parsing** is. Basically, **parsing** is just the process of evaluate *symbols* against *rules* and produce a meaningful *output*. Usually those *symbols* are a stream of characters and the *rules* are functions *(called parser or parser combinators)* whose consume *symbols*, apply some matching logic and return the result and the remaining *symbols*. Take a look at the following code:
+
+```go
+func Char(symbols string, target rune) (rune, string, error) {
+    if len(symbols) == 0 {
+        return 0, "", fmt.Errorf("unexpected end of input")
+    }
+
+    if rune(symbols[0]) == target {
+        return target, symbols[1:], nil
+    }
+
+    return 0, symbols, fmt.Errorf("unexpected symbol %c", symbols[0])
+}
+```
+
+We can see that **Char** function simply takes a string and tries to match the first character with the target character. If the match is successful, it returns the matched character, the remaining string and a none error. Otherwise, it returns an error depending if the input is empty or the character doesn't match. Well... we have built a **parser combinator**🎉 *(or not !?)*.
+
+Strictly speaking, we have not built a **parser combinator** yet; but take it easy, we are almost there. Actually, a **real parser combinator** should be *composable*; that is, we should be able to combine multiple parsers to create more complex parsers. We can achieve this behavior by creating functions which share same returning type: **another function**. Take a look at the following code:
+
+```go
+// We define a generic type for describe a parser function signature
+type Parser[O any] func(input string) (string, O, error)
+
+// We turn the Char function into a parser combinator
+func Char(target rune) Parser[rune] {
+    return func(input string) (string, rune, error) {
+      // ...`Char` implementation
+    }
+}
+```
+
+Basically we have created a **Parser** type which is a function that takes a string and returns a tuple with the remaining string, the result and an error. We also have created a **Char** function which returns a **Parser** function that matches the first character of the input string with the target character. Now we can combine multiple parsers to create more complex parsers since all of them shares same return type. Take a look at the following code:
+
+```go
+// We define a generic type for group pair parsers results 
+type PairResult[T, K any] struct {
+	first  T
+	second K
+}
+
+// We define `Pair` function which takes two parsers,  
+// apply them and return a parser for pair result 
+func Pair[T, K any](firstParser Parser[T], secondParser Parser[K]) Parser[PairResult[T, K]] {
+	return func(input string) (string, PairResult[T, K], error) {
+		var result PairResult[T, K]
+
+		rest, p1, err := firstParser(input)  // Apply the first parser
+
+		if err != nil {
+			return "", result, fmt.Errorf("first parser failed")  
+		}
+
+		next, p2, err := secondParser(rest) // Apply the second parser
+
+		if err != nil {
+			return "", result, fmt.Errorf("second parser failed")
+		}
+
+		result.first = p1
+		result.second = p2
+
+		return next, result, nil  // Return the result
+	}
+}
+```
+
+In the previous code we can start to notice the power of **parser combinators**. Just with a generic function signature and a couple of functions which shares same generic return type, we can start to *compose* complex matching logic. In this case, we have created a **Pair** function which takes two parsers, apply them in sequence and return a parser for a pair result. Let's see how can we use it with the **Char** parser: 
+
+```go
+func main() {
+    // We create a parser for a pair of characters
+    pairParser := Pair(Char('a'), Char('b'))
+
+    // We apply the parser to a string
+    rest, result, err := pairParser("abcdefg")
+
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+
+    fmt.Printf("First: %c, Second: %c, Remaining: %s", result.first, result.second, rest)
+
+    // Output: First: a, Second: b, Remaining: cdefg
+}
+```
+
+In the previous code we have created a parser for a pair of characters and applied it to a string. The parser first tries to match the first character with 'a' and then the second character with 'b'. If the match is successful, it returns the pair result and the remaining string.
+
+## Gom in action 🎯
+Once we have understood the basics of **parser combinators**, we can start to see the power of **Gom** library. **Gom** is a functional parser library for Go inspired in **Nom** crate for Rust. It provides a set of parser combinators for simplify **parsing** tasks in Go programming language. Some of the features of **Gom** are:
+
+- **Functional**: **Gom** is a functional library which allows to create parsers as functions.
+- **Composable**: **Gom** provides a set of parser combinators which allows to create complex parsers by combining simple parsers.
+- **Default parsers**: **Gom** provides a set of default parsers for common tasks like matching characters, strings, numbers, etc.
+
+Let's create a super simple *HTML tags* parser using **Gom** library. We are going to create a parser for matching *HTML tags* like **\<html>**,  **\<head>**,  **\<body>**, etc. Take a look at the following code:
+
+```go
+package main
+
+import (
+	"fmt"
+	"unicode"
+
+	"github.com/alfredoprograma/gom"
+)
+
+func main() {
+    // Parses attribute name -> attr=
+	attrNameParser := gom.Terminated(
+		gom.StrictTakeWhile(func(ch rune) bool {
+			return unicode.IsLetter(ch) || ch == '-'
+		}),
+		gom.Char('='),
+	)
+
+    // Parses attribute value -> "value"
+	attrValueParser := gom.Delimited[string](
+		gom.Char('"'),
+		gom.StrictTakeUntil("\""),
+		gom.Char('"'),
+	)
+
+    // Parses attribute -> attr="value"
+	attrParser := gom.Pair[string, string](attrNameParser, attrValueParser)
+
+    // Parses HTML tag -> <html lang="en" name="alfredo" >
+	htmlTagParser := gom.Delimited[string](
+        // Checks for '<' character and consumes it
+		gom.Char('<'),
+
+        // Parses a pair composed by tag name as first parser 
+        // and a list of attributes as second parser
+		gom.Pair[string, []gom.PairResult[string, string]](
+			gom.Terminated(
+                // Parses tag name -> html
+				gom.StrictTakeWhile(unicode.IsLetter),
+
+                // Consumes spaces
+				gom.Many(gom.Char(' ')),
+			),
+			gom.Many(
+				gom.Terminated(
+                    // Parses a list of attributes -> lang="en", name="alfredo" 
+					attrParser,
+					gom.Many(gom.Char(' ')),
+				),
+			),
+		),
+
+        // Checks for '>' character and consumes it
+		gom.Char('>'),
+	)
+
+	next, parsed, err := htmlTagParser("<html lang=\"en\" name=\"alfredo\">")
+
+	fmt.Println(next, parsed, err)
+
+    // Output:  "" {html [{lang en} {name alfredo}]} <nil>
+}
+``` 
+
+We have created a parser for matching *HTML tags* using **Gom** library. The parser is composed by a tag name and a list of attributes. The tag name is a sequence of letters and the attributes are a list of pairs composed by an attribute name and an attribute value. We have used some of the **Gom** default parsers like **StrictTakeWhile**, **Char**, **Many**, etc. to create the parser. Finally, we have applied the parser to a string and printed the result.
+
+## Downsides 📉
+- **Complexity**: **Parser combinators** are a powerful tool for creating parsers but they can be complex to understand and use. It requires a good understanding of functional programming and recursion.
+- **Performance**: **Parser combinators** can be slow for some tasks since they are based on function composition and recursion. They are not the best choice for performance critical applications.
+- **Error handling**: **Parser combinators** can be tricky to handle errors since they are based on function composition. It requires a good error handling strategy to avoid unexpected behaviors.
+- **Cumbersome**: Go programming language is not the best choice for functional programming. **Parser combinators** can be cumbersome to use in Go since it lacks some functional programming features.
+
+## Conclusion 🎉
+**Gom** is a powerful tool for creating parsers but it can be complex to understand and use. It requires a good understanding of functional programming and recursion. It can be slow for some tasks and tricky to handle errors. Go programming language is not the best choice for functional programming and **parser combinators** can be lead to messy code very fast. Despite its downsides, **Gom** was a great experiment and improved my understanding about parsers in Go and it can be a good choice for some tasks. Give it a try and see if it fits your needs.
+
+<div class="w-full h-1 bg-primary"></div>
+
+**That's all for today folks!** I hope you enjoyed this project review. If you have any questions or comments, feel free to contact me in my social media. I'll be happy to answer them. See you in the next project review! 👋🏼.
+
+<footer class="flex justify-center">
+  <SocialMedia />
+</footer>
+
