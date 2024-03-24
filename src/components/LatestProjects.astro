@@ -1,5 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
+import { sortDescByDate } from '@/utils/dates';
+
 import ProjectItem from './ProjectItem.astro';
 
 const projects = await getCollection('projects');
@@ -12,8 +14,9 @@ const projects = await getCollection('projects');
 
   <div class='grid gap-12 md:grid-cols-2'>
     {
-      projects.map(
-        ({ slug, data: { title, description, thumbnail, tags } }) => (
+      projects
+        .toSorted(sortDescByDate)
+        .map(({ slug, data: { title, description, thumbnail, tags } }) => (
           <ProjectItem
             slug={slug}
             title={title}
@@ -24,8 +27,7 @@ const projects = await getCollection('projects');
               src: thumbnail.src,
             }}
           />
-        )
-      )
+        ))
     }
   </div>
 </section>
