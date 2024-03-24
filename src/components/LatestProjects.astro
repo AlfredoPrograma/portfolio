@@ -15,7 +15,7 @@ const projects = await getCollection('projects');
   <div class='grid gap-12 md:grid-cols-2'>
     {
       projects
-        .toSorted(sortDescByDate)
+        .sort(sortDescByDate)
         .map(({ slug, data: { title, description, thumbnail, tags } }) => (
           <ProjectItem
             slug={slug}
