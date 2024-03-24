@@ -19,6 +19,7 @@
     "typescript": "^5.4.3"
   },
   "devDependencies": {
-    "@iconify-json/lucide": "^1.1.177"
+    "@iconify-json/lucide": "^1.1.177",
+    "@tailwindcss/typography": "^0.5.10"
   }
 }
