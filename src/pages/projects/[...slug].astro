@@ -45,7 +45,9 @@ const projectTags = await getEntries(tags);
       />
     </figure>
 
-    <div class='flex justify-between items-center'>
+    <div
+      class='flex flex-col-reverse gap-2 justify-between items-center md:flex-row md:gap-0'
+    >
       <Badges tags={projectTags} />
 
       <div
