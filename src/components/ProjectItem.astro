@@ -2,18 +2,19 @@
 interface Props {
   title: string;
   description: string;
+  slug: string;
   image: {
     src: string;
     alt: string;
   };
 }
 
-const { title, description, image } = Astro.props;
+const { title, description, image, slug } = Astro.props;
 ---
 
 <a
   class='block'
-  href='#'
+  href={`/projects/${slug}`}
 >
   <article class='space-y-2'>
     <figure>

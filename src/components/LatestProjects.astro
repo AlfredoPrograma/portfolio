@@ -1,5 +1,8 @@
 ---
+import { getCollection } from 'astro:content';
 import ProjectItem from './ProjectItem.astro';
+
+const projects = await getCollection('projects');
 ---
 
 <section class='space-y-4'>
@@ -9,12 +12,13 @@ import ProjectItem from './ProjectItem.astro';
 
   <div class='grid grid-cols-2 gap-8'>
     {
-      Array.from({ length: 4 }).map((_, index) => (
+      projects.map((project) => (
         <ProjectItem
-          title={`Project ${index + 1}`}
+          slug={project.slug}
+          title={project.data.title}
           description='Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
           image={{
-            alt: `Project ${index + 1}`,
+            alt: project.data.title,
             src: 'https://via.placeholder.com/500',
           }}
         />

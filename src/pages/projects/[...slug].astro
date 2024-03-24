@@ -1,0 +1,28 @@
+---
+import PageLayout from '@/layout/PageLayout.astro';
+import { type CollectionEntry, getCollection } from 'astro:content';
+
+type Props = { project: CollectionEntry<'projects'> };
+
+export async function getStaticPaths() {
+  const projectEntries = await getCollection('projects');
+
+  return projectEntries.map((project) => ({
+    params: {
+      slug: project.slug,
+    },
+    props: {
+      project,
+    },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+---
+
+<PageLayout title={project.data.title}>
+  <div class='max-w-none prose'>
+    <Content />
+  </div>
+</PageLayout>
