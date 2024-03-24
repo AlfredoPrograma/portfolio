@@ -12,14 +12,14 @@ const projects = await getCollection('projects');
 
   <div class='grid grid-cols-2 gap-8'>
     {
-      projects.map((project) => (
+      projects.map(({ slug, data: { title, description, thumbnail } }) => (
         <ProjectItem
-          slug={project.slug}
-          title={project.data.title}
-          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-          image={{
-            alt: project.data.title,
-            src: 'https://via.placeholder.com/500',
+          slug={slug}
+          title={title}
+          description={description}
+          thumbnail={{
+            alt: thumbnail.alt,
+            src: thumbnail.src,
           }}
         />
       ))

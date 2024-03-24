@@ -1,15 +1,13 @@
 ---
-interface Props {
-  title: string;
-  description: string;
-  slug: string;
-  image: {
-    src: string;
-    alt: string;
-  };
-}
+import type { CollectionEntry } from 'astro:content';
 
-const { title, description, image, slug } = Astro.props;
+type Props = Pick<
+  CollectionEntry<'projects'>['data'],
+  'title' | 'description' | 'thumbnail'
+> &
+  Pick<CollectionEntry<'projects'>, 'slug'>;
+
+const { title, description, thumbnail, slug } = Astro.props;
 ---
 
 <a
@@ -19,8 +17,8 @@ const { title, description, image, slug } = Astro.props;
   <article class='space-y-2'>
     <figure>
       <img
-        src={image.src}
-        alt={image.alt}
+        src={thumbnail.src}
+        alt={thumbnail.alt}
         class='w-full h-64 object-cover'
       />
     </figure>
