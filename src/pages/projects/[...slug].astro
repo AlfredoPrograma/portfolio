@@ -1,6 +1,7 @@
 ---
 import Badges from '@/components/Badges.astro';
 import PageLayout from '@/layout/PageLayout.astro';
+import { Icon } from 'astro-icon/components';
 import { getEntries } from 'astro:content';
 import { type CollectionEntry, getCollection } from 'astro:content';
 
@@ -28,6 +29,18 @@ const projectTags = await getEntries(tags);
 
 <PageLayout title={title}>
   <header class='space-y-4'>
+    <a
+      href='/'
+      aria-label='navigate to home'
+      class='text-primary text-base w-max p-2 rounded-md flex items-center gap-2 transition-colors hover:text-white hover:bg-primary'
+    >
+      <Icon
+        name={'lucide:arrow-left'}
+        size={20}
+      />
+      Back to home
+    </a>
+
     <div class='space-y-4'>
       <h1 class='text-5xl font-medium text-primary'>
         {title}
