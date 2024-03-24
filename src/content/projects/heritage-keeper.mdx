@@ -6,3 +6,56 @@ thumbnail:
   alt: "Heritage Keeper login page"
   src: "https://camo.githubusercontent.com/78eae0bdb3bd034e748f55fb6a57100336525238386e8565a7cff7b3605474dd/68747470733a2f2f692e696d6775722e636f6d2f71346f5a554a4e2e706e67"
 ---
+
+import SocialMedia from '@/components/SocialMedia.astro'
+
+**Hello folks!** Welcome to another project overview. This time we are going to review **Heritage Keeper**, a web application developed in *48 hours* and the winner of **Codicon 2024** *(the yearly hackaton sponsored by [Lexpin](https://lexpin.online/) academy)*. 
+
+## Chapter I: The idea 💡💭
+First of all, I want to give you a little bit of context. **Codicon** is an international hackaton where developers from all around the world gather to develop a software product in a limited amount of time based on a particular keyword. This year, the keyword was... **"Transmission" 🤯.**  Well, that was a tricky one, but we managed to come up with a great idea. My team and I didn't want to stick to the typical "data transmission" or "streaming" application concepts, so we took our time to brainstorm and analyze the alternatives we had. After a couple of hours, we found the perfect idea to work on: ***a web application to store, share, and transmit family memories and albums to future generations***. We knew that this was an amazing approach to the keyword, and we started to work on it right away.  
+
+## Chapter II: The setup 🛠️
+The time was limited; 48 hours sounds like a lot of time but believe me when I say that it's not. My team and I knew that so we had to be efficient and organized to deliver a functional product. **We decided to use full stack technologies and infrastructure as a service to speed up the development process and avoid any configuration issues.** We used the following technologies:
+
+- [Next.js](https://nextjs.org/) for frontend and backend development. It was the perfect choice for us because it allowed us to develop a server rendered [React](https://react.dev/) application with ease. Additionally, it offers a wealth of libraries and pluggable integrations, such as [NextAuth.js](https://next-auth.js.org/) for authentication and [Prisma](https://www.prisma.io/) for database management.
+
+- [Shadcn/ui](https://ui.shadcn.com/) was utilized as our design system. Its components are beautiful by default. By simply importing the library and making some theme changes, we were able to create a stunning UI in no time.
+
+- [Neon](https://neon.tech/) as database provider. Literally an awesome database as a service that allowed us to store and manage our data without worrying about the infrastructure. It provides a fully default configuration for serverless applications and it works perfectly with our selected ORM.
+
+- [Uploadthing](https://uploadthing.com/) served as our file storage provider. Despite being in *beta*, it was a great choice for us because it allowed us to store and manage files in a simple and secure way. Its API is very handy and easy to use.
+
+## Chapter III: The development 🚀
+Once we had the setup ready and an amazing idea to work on, we started to develop the application. The core modelling of the application we based in three main entities:
+
+- **Family Members**: they represent the different members that can be part of the user's family. They can be added, edited, and deleted by the user. Also they can be tagged in the different **memories** and **albums**. 
+
+- **Memories**: they allow to the user to save pictures of meaningful moments of its life. They can be added, shared and deleted by the user. Also they can be tagged with **family members** and can be downloaded individually as image files.
+
+- **Albums**: they are groups of **memories** that can be shared and downloaded by the user. They can be created, edited, and deleted by the user. Also can be opened in a *visualization mode* to appreciate the **memories** one by one.
+
+Since we were three developers in the team, we decided to distribute each module to each one randomly. After some give aways, I ended up developing the **Albums** module. 
+
+## Chapter IV: My part (Album's module) 📚
+To be honest, **Albums** module was the most challenging part of the project because it had to integrate **memories** and **family members** into a single entity. I had to work hard on the relationships between the entities in order to make the module work properly. The user should be able to give a **title**, **description** and **publishing date** to the **album**, and also should be able to add and remove **memories** from it based on the tagged **family members**. 
+
+It was a lot of work and things to care about; but I managed to finish it on time and making it work as intended. I'm not going to lie, I encountered some issues with **memories** filtering and **family members** tagging, but I found a way to solve them and ensure the module functioned properly. Some of key points of the solution for **albums** management included:
+
+- **Creation and updating**: I decided to use a two step modal to divide the **metadata** and the **memories** selection. This way user was guided to create the **album** in a more organized way: in the first step, the user fullfill the **album's** overview and in the second step, the user selects the **memories** to include in the **album**.
+
+- **Memories filtering**: I used a multi-select component to allow the user to select the **family members** that it wanted to include in the **album**. This way the user was able to filter the **memories** based on the **family members**.
+
+- **Album downloading**: I used a download button to allow the user to download the **album** as a zip file. Basically, when the button was hit, all the **album's memories** were collected and compressed into a zip file and finally downloaded automatically in the user's browser.
+
+## Chapter V: The final result 🏆
+After 48 hours of hard work, we managed to finish the project and submit it to the **Codicon 2024** hackaton. We were very proud of the result and we knew that we had a great chance to win the competition. The judges were amazed by the idea and the implementation of the project. They loved the concept of **Heritage Keeper** and they were impressed by the quality of the code and the design of the application. After a long deliberation, the judges announced that **Heritage Keeper** was the winner of the **Codicon 2024** hackaton. We were very happy and proud of our work. We knew that we had done a great job and that we had created something special. 
+
+I want to give special thanks to my amazing teammates [Juan Álvarez](https://github.com/juanzenn) and [Pedro Uzcátegui](https://github.com/pedrouzcategui) with whom I had the pleasure to work and create great software.
+
+<div class="w-full h-1 bg-primary"></div>
+
+**That's all for today folks!** I hope you enjoyed this project overview. If you have any questions or comments, feel free to contact me in my social media. I'll be happy to answer them. See you in the next project overview! 👋🏼.
+
+<footer class="flex justify-center">
+  <SocialMedia />
+</footer>

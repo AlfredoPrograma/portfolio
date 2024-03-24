@@ -18,7 +18,7 @@ export async function getStaticPaths() {
 }
 
 const { project } = Astro.props;
-const { thumbnail, title, description } = project.data;
+const { thumbnail, title } = project.data;
 const { Content } = await project.render();
 ---
 
@@ -28,10 +28,6 @@ const { Content } = await project.render();
       <h1 class='text-5xl font-medium text-primary'>
         {title}
       </h1>
-
-      <h2 class='text-xl'>
-        {description}
-      </h2>
     </div>
 
     <figure>
