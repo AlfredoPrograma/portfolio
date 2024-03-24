@@ -18,11 +18,34 @@ export async function getStaticPaths() {
 }
 
 const { project } = Astro.props;
+const { thumbnail, title, description } = project.data;
 const { Content } = await project.render();
 ---
 
-<PageLayout title={project.data.title}>
-  <div class='max-w-none prose'>
+<PageLayout title={title}>
+  <header class='space-y-6'>
+    <div class='space-y-4'>
+      <h1 class='text-5xl font-medium text-primary'>
+        {title}
+      </h1>
+
+      <h2 class='text-xl'>
+        {description}
+      </h2>
+    </div>
+
+    <figure>
+      <img
+        class='w-full h-96 object-cover'
+        src={thumbnail.src}
+        alt={thumbnail.alt}
+      />
+    </figure>
+  </header>
+
+  <div
+    class='max-w-none prose prose-lg prose-h1:font-medium prose-headings:text-primary prose-headings:font-medium'
+  >
     <Content />
   </div>
 </PageLayout>
