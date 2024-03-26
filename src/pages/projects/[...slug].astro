@@ -21,7 +21,7 @@ export async function getStaticPaths() {
 }
 
 const { project } = Astro.props;
-const { thumbnail, title, tags } = project.data;
+const { thumbnail, title, tags, repoUrl } = project.data;
 const { Content } = await project.render();
 
 const projectTags = await getEntries(tags);
@@ -58,17 +58,31 @@ const projectTags = await getEntries(tags);
       />
     </figure>
 
-    <div
-      class='flex flex-col-reverse gap-2 justify-between items-center md:flex-row md:gap-0'
-    >
-      <Badges tags={projectTags} />
-
+    <div class='space-y-2'>
       <div
-        id='thumbnail-figcaption'
-        class='text-base italic'
+        class='flex flex-col-reverse gap-2 justify-between items-center md:flex-row md:gap-0'
       >
-        {thumbnail.figcaption}
+        <Badges tags={projectTags} />
+
+        <div
+          id='thumbnail-figcaption'
+          class='text-base italic'
+        >
+          {thumbnail.figcaption}
+        </div>
       </div>
+
+      <a
+        class='flex items-center w-max gap-1 hover:underline'
+        href={repoUrl}
+        aria-label='navigate to project source code'
+      >
+        <Icon
+          name='lucide:link'
+          size={18}
+        />
+        Source code
+      </a>
     </div>
   </header>
 

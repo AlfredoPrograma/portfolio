@@ -4,6 +4,7 @@ const projects = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
+    repoUrl: z.string().optional(),
     thumbnail: z.object({
       src: z.string(),
       alt: z.string(),
