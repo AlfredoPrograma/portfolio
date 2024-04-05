@@ -16,7 +16,7 @@ import SocialMedia from '@/components/SocialMedia.astro'
 **Hey there! 🙋🏽‍♂️** Nice to see you and welcome to another project review. Today, we are going to inspect an interesting **JSON Parser** written in Rust.
 
 ## Parsing, Tokenization and Abstract Syntax Tree 🌳
-Have you ever wondered: *How are text formats interpreted?* At the end, they are just a bunch of characters with some kind of predefined schema and the programming languages and tools are able to translate them into their own data structures. Take a look at this:
+*Have you ever wondered how text formats are interpreted?* At their core, they're simply a collection of characters adhering to a predefined schema, which programming languages can then translate into their own data structures. Consider this:
 
 ```typescript
 const raw = '{ "name": "John", "lastname": "Doe", "age": 24 }'
@@ -28,32 +28,32 @@ console.log(parsed.lastname) // "Doe"
 console.log(parsed.age) // 24
 ```
 
-At the beginning we have a raw string with **JSON** format, and then, after apply `JSON.parse` method we are magically able to access to the values through dot object notation. Well, my dear friend, it is not magic 🧙🏼‍♂️; there are many processes which happens behind the scenes which allows transforming raw strings into usable data by the programming languages and tools. We can resume them two core processes:
+At the beginning, we start with a raw string in JSON format. After applying the `JSON.parse` method, we seemingly gain magical access to the values through dot object notation. However, my dear friend, it's not magic; numerous processes occur behind the scenes to transform raw strings into usable data for programming languages. We can summarize these processes into two core steps:
 
-- **Tokenization:** The parser scans the raw string and converts them into **tokens**; which basically are an extended meaningful representation of the key characters and set of characters defined by the syntax of the target format and extra data like the location or type of the token.
-- **Abstract Syntax Tree (AST) building**: Once raw string is translated into a set of tokens, they should be transformed in a heriarchycal data structure which determines the order of the elements and how they compose together.
+- **Tokenization**: The parser scans the raw string and converts it into **tokens**. These tokens essentially serve as an *enriched, meaningful representation of the key characters and sets of characters defined by the syntax of the target format*, often supplemented with additional data such as the token's location or type.
+- **Abstract Syntax Tree (AST) Building**: Once the raw string is translated into a set of tokens, the next step involves transforming them into a hierarchical data structure known as an **Abstract Syntax Tree (AST)**. This structure defines the order of elements and how they compose together, providing a systematic representation of the parsed data.
 
-Particularly, for this project I opted for perform both operations at once because JSON format is extremely simple and the practice project too; so I decided to not store any tokens and just build the data structure consuming raw characters. 
+For this project, I opted to **perform both operations simultaneously** because the JSON format is extremely simple, as is the practice project itself. Therefore, I decided not to store any tokens and instead directly build the data structure by consuming raw characters.
 
 ## Building from inner to outer 🎯
-Now we know that we need to consume characters based on some patterns and combinations defined by the **JSON** format, and then build a heriarchical data structure which represents efficiently the parsed values. *But, how can we start create the functions to consume these characters?* Well, since JSON format is built upon a recursive structure; I decided to start building functions for consume and represent simpler expressions, and then, once foundations were solid enough, create functions for composable expressions. 
+Now that we understand the need to consume characters based on patterns and combinations defined by the JSON format, our next task is to construct a hierarchical data structure that efficiently represents the parsed values. *But where do we begin in creating functions to consume these characters?* Given that the JSON format relies on a **recursive structure**, I chose to start by developing functions to consume and represent simpler expressions. Then, once the foundations were solid enough, I proceeded to create functions for composing more complex expressions.
 
-Now, which are those **simpler expressions** I mentioned before? They are the primitive types of values which are allowed by the JSON format schema definition:
+The simpler expressions I referred to earlier are the **primitive types of values** allowed by the JSON format schema definition:
 
-- **strings**: streams of characters delimited by double quotes.
-- **numbers**: integer and float number representations.
-- **booleans**: `true` or `false`.
-- **null**: special value which indicates emptyness.
+- **Strings**: streams of characters.
+- **Numbers**: integer and float number representations.
+- **Booleans**: `true` or `false`.
+- **Null**: special value indicating emptiness.
 
-**Composed expressions** basically are kinda groups of elements. I mean, they only **groups** primitive values in ordered or unordered ways. Particularly they are:
+In the other hand, **Composed expressions** are essentially groups of elements. They consist of grouping primitive values in ordered or unordered ways. Specifically, they include:
 
-- **arrays**: groups values sequentially and allows accessing to data through indexes.
-- **objects**: groups values non sequentiallys and allows accessing to data through `key/value` pairs.
+- **Arrays**: Groups values sequentially and allows access to data through **indexes**.
+- **Objects**: Groups values non-sequentially and allows access to data through **key/value** pairs.
 
-Finally, since **Composed expressions** are built upon **primitive expressions**; we should start creating functions whose parse **strings**, **numbers**, **booleans** and **null** values particularly. Then we build the functions for parse **Composed expressions**.
+Finally, since **composed expressions** are built upon **primitive expressions**, we should begin by creating functions that parse *strings*, *numbers*, *booleans*, and *null* values specifically. Then, we can proceed to build the functions for parsing *arrays* and *objects*.
 
-## Representing parsed values in Rust
-In order be able to parse different kind of types and group them into a same type, I decided to use `Enums`; which is an extremely powerful feature of Rust (and mainly functional programming languages) that groups multiple types into one representation. Think about them as some kind of *union types*. The base enum will be `JsonValue`; and it will represent all the possible JSON values. Take a look at the enum code:
+## Representing parsed values in Rust ⚙️
+Note that this is a recursive enum; some `JsonValues` can be composed of other `JsonValues`, specifically *arrays* and *objects*. On the other hand, Null is a bit tricky because it should represent the absence of a `JsonValue`; so we simply box it into an `Option` wrapper and we are done.
 
 ```rust
 #[derive(PartialEq, Debug)]
@@ -72,7 +72,7 @@ pub enum JsonValue {
 
 Notice this is a **recursive enum**; some `JsonValues` can be composed for other `JsonValues`, especifically `Arrays` and `Objects`. In the other hand `Null` is a tricky one because it should represent absence of a`JsonValue`; so we just boxed it into an `Option` wrapper and we are done.
 
-## Parsing functions
+## Parsing functions 📠
 
 ### Parse string
 ```rust
@@ -91,7 +91,7 @@ pub fn parse_string<'a>() -> JsonValueParser<'a> {
 }
 ```
 
-Taking advantage from [Nom]() as parsers combinator library and some predefined types; we can focus directly in the body of the function; where we search for expressions with the following pattern `"any characters here"`. So we use the `delimited` parser to search the "opening double quote character", then all the characters until another double quote, and then consume the "closing double quote". Finally we run the parser and map the resulting value into a `JsonValue::String`.
+Taking advantage of [Nom](https://docs.rs/nom/latest/nom/) as a parser combinator library and some predefined types, we can focus directly on the body of the function, where we search for expressions with the following pattern: `"any characters here"`. We use the `delimited` parser to find the opening double quote character, then all the characters until another double quote, and finally consume the closing double quote. Finally, we run the parser and map the resulting value into a `JsonValue::String`.
 
 ### Parse array
 ```rust
@@ -112,21 +112,23 @@ pub fn parse_array<'a>() -> JsonValueParser<'a> {
 }
 ```
 
-This function is a little bit complex; **but let's go ahead**:
+This function may seem a bit complex, but let's dive in:
 
-First of all, we have a helper function `parse_array_values`; which returns an array of parses a `JsonValue` and then checks if exists a comma character and consume it with the incoming whitespaces. In this way, we finally get an array of `JsonValues`.
+Firstly, we have a helper function `parse_array_values`, which parses a `JsonValue` and then checks if a comma character exists, consuming it along with any incoming whitespaces. This results in an array of `JsonValues`.
 
-The other function is similar to the `parse_string` function described previously; we look for an "opening square bracket", then use the helper function to parse all internal elements as `JsonValues`, and finally look for a "closing square bracket". If all the parsing process is successful, then map the array of values into its enum representation as `JsonValue::Array`.
+The other function is similar to the `parse_string` function described previously. Here, we search for an opening square bracket, then utilize the helper function to parse all internal elements as `JsonValues`, and finally look for a closing square bracket. If the entire parsing process is successful, we map the array of values into its enum representation as `JsonValue::Array`.
 
-## Conclusions and learnings
+The remaining parsing functions for all other types of values are available in the source code. Readers can delve deeper into the specifics by referring to the source code directly.
 
-I really wanted to make this project because I was highly curious about how data transferred through different formats can be interpreted by the own data structures of particular languages. I've already know that there was a some kind of translation process between parts, but I wanted to understand it deeply. 
+## Conclusions and learnings 🧠
 
-This practice made me understand general concepts about text manipulation and interpretation; particularly about how raw strings can be translated into meaningful entities through tokenization; and then how these entities can be interpreted for building more complex structures which ends up with a fully data structure which can be managed in the current programming language. Also, the concepts learnt by this project are not only for specific text formats like JSON, YAML, TOML or other; they are applicable even for building own programming languages!
+I was truly intrigued by the idea of creating this project because I had a profound curiosity about how data traverses through various formats and gets interpreted by the inherent data structures of specific programming languages. While I understood that there was some sort of translation process involved, I yearned to delve deeper into its workings.
+
+This endeavor enlightened me on fundamental principles of **text manipulation and interpretation**, especially regarding how raw strings undergo tokenization to transform into meaningful entities. Subsequently, I grasped the intricate process of interpreting these entities to construct more complex structures, ultimately culminating in a fully functional data structure compatible with the programming language at hand. Remarkably, the insights gleaned from this project extend beyond specific text formats schemas like *JSON*, *YAML*, *TOML*, or others; they are equally applicable in the creation of bespoke programming languages!
 
 <div class="w-full h-1 bg-primary"></div>
 
-Well, it was a long project and interesting project which enforced me to explore new programming topics outside usual web development. I hope this review has been precious for you. Remember you can send me any suggestions or comments through my social media. See you later alligator!.
+It was a long and interesting project that led me to explore new programming topics beyond my usual focus on web development. I hope this review has been helpful for you. Feel free to send me any suggestions or comments through my social media. See you later!
 
 <footer class="flex justify-center">
   <SocialMedia />
