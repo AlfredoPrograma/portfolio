@@ -1,0 +1,17 @@
+---
+export interface NavLinkProps {
+  text: string;
+  href: string;
+}
+
+type Props = NavLinkProps;
+
+const { href, text } = Astro.props;
+---
+
+<a
+  href={href}
+  class="text-neutral-600 hover:text-neutral-900 transition-colors"
+>
+  {text}
+</a>
