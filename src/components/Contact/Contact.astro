@@ -16,7 +16,13 @@ const CONTACT_LINKS = [
     href: "https://github.com/AlfredoPrograma",
     text: "Github",
   },
-] satisfies (NavLinkProps & { featured?: boolean })[];
+  {
+    href: "/Alfredo-Arvelaez-CV-English.pdf",
+    text: "Download resume",
+    download: true,
+  },
+] satisfies (NavLinkProps &
+  Partial<{ featured: boolean; download: boolean }>)[];
 ---
 
 <section id="contact" class="py-20 px-6">
@@ -30,11 +36,12 @@ const CONTACT_LINKS = [
     </p>
     <div class="flex flex-col sm:flex-row gap-8 justify-center items-center">
       {
-        CONTACT_LINKS.map(({ href, text, featured }) => (
+        CONTACT_LINKS.map(({ href, text, featured, download }) => (
           <ButtonLink
             size="lg"
             variant={featured ? "fill" : "outline"}
             href={href}
+            download={download}
           >
             {text}
           </ButtonLink>
