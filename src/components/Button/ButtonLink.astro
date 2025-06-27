@@ -1,0 +1,22 @@
+---
+type ButtonVariant = "fill" | "outline";
+
+interface ButtonLinkProps {
+  href: string;
+  variant?: ButtonVariant;
+}
+
+type Props = ButtonLinkProps;
+
+const { href, variant = "fill" } = Astro.props;
+
+const buttonStyles = {
+  fill: "inline-flex items-center justify-center px-4 py-2 bg-neutral-900 text-white hover:bg-neutral-800 transition-colors rounded-sm font-medium",
+  outline:
+    "inline-flex items-center justify-center px-4 py-2 border border-neutral-300 text-neutral-700 hover:border-neutral-400 hover:text-neutral-900 transition-colors rounded-sm font-medium",
+} satisfies Record<ButtonVariant, string>;
+---
+
+<a href={href} class={buttonStyles[variant]}>
+  <slot />
+</a>

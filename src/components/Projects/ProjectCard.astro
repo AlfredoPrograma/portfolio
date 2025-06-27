@@ -1,0 +1,49 @@
+---
+import ButtonLink from "@components/Button/ButtonLink.astro";
+
+interface ProjectCardProps {
+  title: string;
+  description: string;
+  tech: string[];
+  repositoryUrl: string;
+  previewUrl?: string;
+}
+
+type Props = ProjectCardProps;
+
+const { description, repositoryUrl, previewUrl, tech, title } = Astro.props;
+---
+
+<div
+  class="bg-white p-8 rounded-sm border border-neutral-200 hover:border-neutral-300 transition-colors"
+>
+  <div>
+    <div>
+      <h3 class="text-2xl font-medium text-neutral-900 mb-4">
+        {title}
+      </h3>
+      <p class="text-neutral-600 mb-6 leading-relaxed">
+        {description}
+      </p>
+      <div class="flex flex-wrap gap-2 mb-6">
+        {
+          tech.map((tech) => (
+            <span class="px-3 py-1 bg-neutral-100 text-neutral-700 text-sm rounded-sm">
+              {tech}
+            </span>
+          ))
+        }
+      </div>
+      <div class="flex space-x-4">
+        <ButtonLink href={repositoryUrl}>Github</ButtonLink>
+        {
+          previewUrl && (
+            <ButtonLink variant="outline" href={previewUrl}>
+              Go to app
+            </ButtonLink>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</div>
