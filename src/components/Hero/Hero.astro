@@ -1,9 +1,14 @@
 ---
 import ButtonLink from "@components/Button/ButtonLink.astro";
+import { getLangFromUrl } from "@i18n/utils";
+import { translate } from "@i18n/pages/index";
+
+const lang = getLangFromUrl(Astro.url);
+const t = translate(lang);
 ---
 
 <section
-  id="home"
+  id="about"
   class="min-h-screen flex items-center justify-center px-6 pt-14"
 >
   <div class="max-w-4xl mx-auto text-center">
@@ -13,17 +18,17 @@ import ButtonLink from "@components/Button/ButtonLink.astro";
       Alfredo Arvelaez
     </h1>
     <p class="text-xl md:text-2xl text-neutral-600 mb-8 font-light">
-      Software Developer & Cloud Engineer
+      {t("hero.career")}
     </p>
     <p class="text-lg text-neutral-500 max-w-2xl mx-auto leading-relaxed mb-12">
-      Cloud focused developer who thrives at the intersection of backend
-      development and infrastructure management — turning business logic into
-      performant systems and automating the path from commit to production.
+      {t("hero.tagline")}
     </p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <ButtonLink href="#projects" size="lg">View my work</ButtonLink>
+      <ButtonLink href="#projects" size="lg">
+        {t("hero.view-my-work")}
+      </ButtonLink>
       <ButtonLink href="#contact" size="lg" variant="outline">
-        Get in touch
+        {t("hero.get-in-touch")}
       </ButtonLink>
     </div>
   </div>

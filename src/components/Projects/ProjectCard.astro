@@ -1,5 +1,10 @@
 ---
 import ButtonLink from "@components/Button/ButtonLink.astro";
+import { getLangFromUrl } from "@i18n/utils";
+import { translate } from "@i18n/pages/index";
+
+const lang = getLangFromUrl(Astro.url);
+const t = translate(lang);
 
 interface ProjectCardProps {
   title: string;
@@ -35,11 +40,11 @@ const { description, repositoryUrl, previewUrl, tech, title } = Astro.props;
         }
       </div>
       <div class="flex space-x-4">
-        <ButtonLink href={repositoryUrl}>View code</ButtonLink>
+        <ButtonLink href={repositoryUrl}>{t("projects.view-code")}</ButtonLink>
         {
           previewUrl && (
             <ButtonLink variant="outline" href={previewUrl}>
-              Go to app
+              {t("projects.go-to-app")}
             </ButtonLink>
           )
         }

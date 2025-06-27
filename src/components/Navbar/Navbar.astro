@@ -2,19 +2,24 @@
 import ButtonLink from "@components/Button/ButtonLink.astro";
 import type { NavLinkProps } from "./NavLink.astro";
 import NavLink from "./NavLink.astro";
+import { getLangFromUrl } from "@i18n/utils";
+import { translate } from "@i18n/pages/index";
+
+const lang = getLangFromUrl(Astro.url);
+const t = translate(lang);
 
 const NAV_LINKS = [
   {
     href: "#about",
-    text: "About",
+    text: t("navbar.about"),
   },
   {
     href: "#projects",
-    text: "Projects",
+    text: t("navbar.projects"),
   },
   {
     href: "#contact",
-    text: "Contact",
+    text: t("navbar.contact"),
   },
 ] satisfies NavLinkProps[];
 ---

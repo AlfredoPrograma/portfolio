@@ -1,11 +1,15 @@
 ---
 import ProjectCard from "./ProjectCard.astro";
+import { getLangFromUrl } from "@i18n/utils";
+import { translate } from "@i18n/pages/index";
+
+const lang = getLangFromUrl(Astro.url);
+const t = translate(lang);
 
 const projects = [
   {
-    title: "Diployable: Static web hosting service application",
-    description:
-      "A full-stack static web hosting service solution built with React, and Golang. Features include user authentication, sites and environments deploying and previewing.",
+    title: t("projects.diployable.title"),
+    description: t("projects.diployable.description"),
     tech: ["React", "Typescript", "Golang", "Postgresql"],
     previewUrl: "#",
     repositoryUrl: "#",
@@ -18,7 +22,7 @@ const projects = [
     <h2
       class="text-3xl md:text-4xl font-light text-neutral-900 mb-12 text-center"
     >
-      Featured Projects
+      {t("projects.title")}
     </h2>
     <div class="space-y-12">
       {projects.map((props) => <ProjectCard {...props} />)}
