@@ -1,0 +1,45 @@
+---
+import ButtonLink from "@components/Button/ButtonLink.astro";
+import type { NavLinkProps } from "@components/Navbar/NavLink.astro";
+
+const CONTACT_LINKS = [
+  {
+    href: "#blog",
+    text: "Blog",
+    featured: true,
+  },
+  {
+    href: "https://www.linkedin.com/in/alfredoprograma/",
+    text: "LinkedIn",
+  },
+  {
+    href: "https://github.com/AlfredoPrograma",
+    text: "Github",
+  },
+] satisfies (NavLinkProps & { featured?: boolean })[];
+---
+
+<section id="contact" class="py-20 px-6">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-3xl md:text-4xl font-light text-neutral-900 mb-8">
+      Let's Work Together
+    </h2>
+    <p class="text-lg text-neutral-600 mb-12 max-w-2xl mx-auto leading-relaxed">
+      I'm always interested in new opportunities and collaborations. Feel free
+      to reach out if you'd like to discuss a project or just say hello.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-8 justify-center items-center">
+      {
+        CONTACT_LINKS.map(({ href, text, featured }) => (
+          <ButtonLink
+            size="lg"
+            variant={featured ? "fill" : "outline"}
+            href={href}
+          >
+            {text}
+          </ButtonLink>
+        ))
+      }
+    </div>
+  </div>
+</section>
