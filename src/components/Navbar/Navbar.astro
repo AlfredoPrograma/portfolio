@@ -21,6 +21,10 @@ const NAV_LINKS = [
     href: "#contact",
     text: t("navbar.contact"),
   },
+  {
+    href: "/blog",
+    text: "Blog",
+  },
 ] satisfies NavLinkProps[];
 ---
 
@@ -29,7 +33,6 @@ const NAV_LINKS = [
 >
   <nav class="max-w-4xl mx-auto px-6 py-4">
     <div class="flex justify-center items-center gap-8">
-      <ButtonLink href="#">Blog</ButtonLink>
       {NAV_LINKS.map((props) => <NavLink {...props} />)}
     </div>
   </nav>
