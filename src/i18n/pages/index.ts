@@ -1,6 +1,6 @@
 import type { Language } from "@i18n/utils";
 
-export const translations = {
+const translations = {
   en: {
     "navbar.about": "About",
     "navbar.projects": "Projects",
@@ -25,8 +25,6 @@ export const translations = {
     "contact.title": "Let's work together",
     "contact.description": "I'm always interested in new opportunities and collaborations. Feel free to reach out if you'd like to discuss a project or just say hello.",
     "contact.download-resume": "Download resume",
-
-    "footer.all-rights-reserved": "All rights reserved"
   },
   es: {
     "navbar.about": "Sobre mi",
@@ -52,8 +50,6 @@ export const translations = {
     "contact.title": "Trabajemos juntos",
     "contact.description": "Siempre estoy abierto a nuevas oportunidades y colaboraciones. No dudes en contactarme si quieres conversar sobre un proyecto o simplemente saludar.",
     "contact.download-resume": "Descargar CV",
-
-    "footer.all-rights-reserved": "Todos los derechos reservados"
   },
 } as const
 

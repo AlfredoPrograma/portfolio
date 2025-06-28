@@ -1,0 +1,30 @@
+---
+import { getCollection } from "astro:content";
+import { translate } from "@i18n/pages/blog";
+import { getLangFromUrl } from "@i18n/utils";
+import Article from "./Article.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = translate(lang);
+
+const articles = await getCollection("articles");
+---
+
+<section class="py-20 px-6 max-w-4xl mx-auto">
+  <header class="text-center mb-12">
+    <h2 class="text-3xl md:text-4xl font-light text-neutral-900 mb-4">
+      WebBlog
+    </h2>
+    <p class="text-lg text-neutral-600 max-w-2xl mx-auto leading-relaxed">
+      {t("blog.description")}
+    </p>
+  </header>
+
+  <div class="space-y-8">
+    {
+      articles.map((article) => (
+        <Article {...article.data} slug={article.id} readTime="5 min read" />
+      ))
+    }
+  </div>
+</section>

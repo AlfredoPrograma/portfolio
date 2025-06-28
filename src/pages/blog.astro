@@ -1,19 +1,13 @@
 ---
+import ArticlesList from "@components/Blog/ArticlesList.astro";
+import Navbar from "@components/Navbar/Navbar.astro";
 import Layout from "@layouts/Layout.astro";
-import { getCollection } from "astro:content";
-
-const articles = await getCollection("articles");
 ---
 
-<Layout title="Blog | AlfredoPrograma" />
+<Layout title="Blog | AlfredoPrograma">
+  <Navbar />
 
-<h1>Posts</h1>
-<ul>
-  {
-    articles.map((p) => (
-      <li>
-        <a href={`/blog/${p.id}`}>{p.data.title}</a>
-      </li>
-    ))
-  }
-</ul>
+  <main class="pt-14">
+    <ArticlesList />
+  </main>
+</Layout>
