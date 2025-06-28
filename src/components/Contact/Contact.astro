@@ -9,13 +9,9 @@ const t = translate(lang);
 
 const CONTACT_LINKS = [
   {
-    href: "#blog",
-    text: "Blog",
-    featured: true,
-  },
-  {
     href: "https://www.linkedin.com/in/alfredoprograma/",
     text: "LinkedIn",
+    featured: true,
   },
   {
     href: "https://github.com/AlfredoPrograma",
@@ -30,7 +26,7 @@ const CONTACT_LINKS = [
   Partial<{ featured: boolean; download: boolean }>)[];
 ---
 
-<section id="contact" class="py-20 px-6">
+<section id="contact" class="py-20 px-6 bg-neutral-50">
   <div class="max-w-4xl mx-auto text-center">
     <h2 class="text-3xl md:text-4xl font-light text-neutral-900 mb-8">
       {t("contact.title")}

@@ -1,8 +1,11 @@
 ---
+import Layout from "@layouts/Layout.astro";
 import { getCollection } from "astro:content";
 
 const articles = await getCollection("articles");
 ---
+
+<Layout title="Blog | AlfredoPrograma" />
 
 <h1>Posts</h1>
 <ul>

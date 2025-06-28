@@ -2,6 +2,7 @@
 import ButtonLink from "@components/Button/ButtonLink.astro";
 import { getLangFromUrl } from "@i18n/utils";
 import { translate } from "@i18n/pages/index";
+import Chip from "@components/Chip/Chip.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = translate(lang);
@@ -31,13 +32,7 @@ const { description, repositoryUrl, previewUrl, tech, title } = Astro.props;
         {description}
       </p>
       <div class="flex flex-wrap gap-2 mb-6">
-        {
-          tech.map((tech) => (
-            <span class="px-3 py-1 bg-neutral-100 text-neutral-700 text-sm rounded-sm">
-              {tech}
-            </span>
-          ))
-        }
+        {tech.map((tech) => <Chip>{tech}</Chip>)}
       </div>
       <div class="flex space-x-4">
         <ButtonLink href={repositoryUrl}>{t("projects.view-code")}</ButtonLink>

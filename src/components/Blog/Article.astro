@@ -1,0 +1,50 @@
+---
+import ButtonLink from "@components/Button/ButtonLink.astro";
+import Chip from "@components/Chip/Chip.astro";
+import { getLangFromUrl } from "@i18n/utils";
+import { formatDate } from "@utils/date";
+
+interface ArticleProps {
+  date: Date;
+  excerpt: string;
+  readTime: string;
+  slug: string;
+  title: string;
+  tags: string[];
+}
+
+type Props = ArticleProps;
+
+const lang = getLangFromUrl(Astro.url);
+const { date, excerpt, readTime, slug, tags, title } = Astro.props;
+---
+
+<article
+  class="bg-white border border-neutral-200 rounded-sm p-8 hover:border-neutral-300 transition-colors"
+>
+  <div class="flex flex-col space-y-4">
+    <div class="flex items-center space-x-4 text-sm text-neutral-500">
+      <time datetime={formatDate(date, lang)}>{formatDate(date, lang)}</time>
+      <span>•</span>
+      <span>{readTime}</span>
+    </div>
+
+    <h3
+      class="text-2xl font-medium text-neutral-900 hover:text-neutral-700 transition-colors"
+    >
+      <a href={`/blog/${slug}`} class="block">
+        {title}
+      </a>
+    </h3>
+
+    <p class="text-neutral-600 leading-relaxed">{excerpt}</p>
+
+    <div class="flex flex-wrap gap-2">
+      {tags.map((text) => <Chip>{text}</Chip>)}
+    </div>
+
+    <div class="pt-2">
+      <ButtonLink href={`/blog/${slug}`}>Read Article</ButtonLink>
+    </div>
+  </div>
+</article>

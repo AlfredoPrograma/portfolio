@@ -1,0 +1,39 @@
+---
+import { getCollection } from "astro:content";
+import Article from "./Article.astro";
+import type { ACTION_ERROR_CODES } from "astro:actions";
+import ButtonLink from "@components/Button/ButtonLink.astro";
+
+const LATEST_ARTICLES_LIMIT = 5;
+
+const articles = await getCollection("articles");
+const latestArticles = articles.slice(0, LATEST_ARTICLES_LIMIT);
+---
+
+<section id="blog" class="py-20 px-6">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-light text-neutral-900 mb-4">
+        Latest Articles
+      </h2>
+      <p class="text-lg text-neutral-600 max-w-2xl mx-auto leading-relaxed">
+        Thoughts on development, design, and the ever-evolving world of
+        technology.
+      </p>
+    </div>
+
+    <div class="space-y-8">
+      {
+        latestArticles.map((article) => (
+          <Article {...article.data} slug={article.id} readTime="5 min read" />
+        ))
+      }
+    </div>
+
+    <div class="text-center mt-12">
+      <ButtonLink href="/blog" variant="outline" size="lg">
+        View All Articles
+      </ButtonLink>
+    </div>
+  </div>
+</section>

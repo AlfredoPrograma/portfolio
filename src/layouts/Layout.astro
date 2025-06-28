@@ -1,6 +1,14 @@
 ---
 import "@fontsource/inter";
 import "@styles/global.css";
+
+interface LayoutProps {
+  title: string;
+}
+
+type Props = LayoutProps;
+
+const { title } = Astro.props;
 ---
 
 <!doctype html>
@@ -9,7 +17,7 @@ import "@styles/global.css";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>AlfredoPrograma | Portfolio</title>
+    <title>{title}</title>
   </head>
 
   <body class="font-inter">
