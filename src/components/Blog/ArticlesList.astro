@@ -1,11 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import { translate } from "@i18n/pages/blog";
-import { getLangFromUrl } from "@i18n/utils";
 import Article from "./Article.astro";
-
-const lang = getLangFromUrl(Astro.url);
-const t = translate(lang);
 
 const articles = await getCollection("articles");
 const sortedArticles = articles.toSorted(
@@ -19,7 +14,8 @@ const sortedArticles = articles.toSorted(
       WebBlog
     </h2>
     <p class="text-lg text-neutral-600 max-w-2xl mx-auto leading-relaxed">
-      {t("blog.description")}
+      Thoughts on development, cloud design, and the ever-evolving backend,
+      infrastructure and devops topics
     </p>
   </header>
 

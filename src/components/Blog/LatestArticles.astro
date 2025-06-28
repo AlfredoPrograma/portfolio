@@ -2,14 +2,8 @@
 import { getCollection } from "astro:content";
 import Article from "./Article.astro";
 import ButtonLink from "@components/Button/ButtonLink.astro";
-import { getLangFromUrl } from "@i18n/utils";
-import { translate } from "@i18n/pages";
-
-const lang = getLangFromUrl(Astro.url);
-const t = translate(lang);
 
 const LATEST_ARTICLES_LIMIT = 5;
-
 const articles = await getCollection("articles");
 
 const latestArticles = articles
@@ -21,10 +15,11 @@ const latestArticles = articles
   <div class="max-w-4xl mx-auto">
     <div class="text-center mb-12">
       <h2 class="text-3xl md:text-4xl font-light text-neutral-900 mb-4">
-        {t("latest-articles.title")}
+        Latest articles
       </h2>
       <p class="text-lg text-neutral-600 max-w-2xl mx-auto leading-relaxed">
-        {t("latest-articles.description")}
+        Thoughts on development, cloud design, and the ever-evolving backend,
+        infrastructure and devops topics
       </p>
     </div>
 
@@ -38,7 +33,7 @@ const latestArticles = articles
 
     <div class="text-center mt-12">
       <ButtonLink href="/blog" variant="outline" size="lg">
-        {t("latest-articles.view-all")}
+        View all
       </ButtonLink>
     </div>
   </div>

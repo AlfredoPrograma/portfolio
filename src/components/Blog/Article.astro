@@ -1,9 +1,7 @@
 ---
 import ButtonLink from "@components/Button/ButtonLink.astro";
 import Chip from "@components/Chip/Chip.astro";
-import { translate } from "@i18n/pages";
-import { getLangFromUrl } from "@i18n/utils";
-import { formatDate } from "@utils/date";
+import { dateFormatter } from "@utils/date";
 
 interface ArticleProps {
   date: Date;
@@ -15,9 +13,6 @@ interface ArticleProps {
 
 type Props = ArticleProps;
 
-const lang = getLangFromUrl(Astro.url);
-const t = translate(lang);
-
 const { date, excerpt, slug, tags, title } = Astro.props;
 ---
 
@@ -27,7 +22,7 @@ const { date, excerpt, slug, tags, title } = Astro.props;
   <div class="flex flex-col space-y-4">
     <header class="space-y-1">
       <time class="text-xs text-neutral-500 block" datetime={date.toISOString()}
-        >{formatDate(date, lang)}</time
+        >{dateFormatter.format(date)}</time
       >
       <h3
         class="text-2xl font-medium text-neutral-900 hover:text-neutral-700 transition-colors"
@@ -45,9 +40,7 @@ const { date, excerpt, slug, tags, title } = Astro.props;
     </div>
 
     <div class="pt-2">
-      <ButtonLink href={`/blog/${slug}`}
-        >{t("artciles.read-article")}</ButtonLink
-      >
+      <ButtonLink href={`/blog/${slug}`}>Read article</ButtonLink>
     </div>
   </div>
 </article>

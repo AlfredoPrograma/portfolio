@@ -1,24 +1,19 @@
 ---
 import type { NavLinkProps } from "./NavLink.astro";
 import NavLink from "./NavLink.astro";
-import { getLangFromUrl } from "@i18n/utils";
-import { translate } from "@i18n/pages/index";
-
-const lang = getLangFromUrl(Astro.url);
-const t = translate(lang);
 
 const NAV_LINKS = [
   {
     href: "/#about",
-    text: t("navbar.about"),
+    text: "About",
   },
   {
     href: "/#projects",
-    text: t("navbar.projects"),
+    text: "Projects",
   },
   {
     href: "/#contact",
-    text: t("navbar.contact"),
+    text: "Contact",
   },
   {
     href: "/blog",
