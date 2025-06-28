@@ -1,6 +1,7 @@
 ---
 import ButtonLink from "@components/Button/ButtonLink.astro";
 import Chip from "@components/Chip/Chip.astro";
+import { translate } from "@i18n/pages";
 import { getLangFromUrl } from "@i18n/utils";
 import { formatDate } from "@utils/date";
 
@@ -16,6 +17,8 @@ interface ArticleProps {
 type Props = ArticleProps;
 
 const lang = getLangFromUrl(Astro.url);
+const t = translate(lang);
+
 const { date, excerpt, readTime, slug, tags, title } = Astro.props;
 ---
 
@@ -44,7 +47,9 @@ const { date, excerpt, readTime, slug, tags, title } = Astro.props;
     </div>
 
     <div class="pt-2">
-      <ButtonLink href={`/blog/${slug}`}>Read Article</ButtonLink>
+      <ButtonLink href={`/blog/${slug}`}
+        >{t("artciles.read-article")}</ButtonLink
+      >
     </div>
   </div>
 </article>

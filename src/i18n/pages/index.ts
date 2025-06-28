@@ -17,6 +17,11 @@ export const translations = {
     "projects.view-code": "View code",
     "projects.go-to-app": "Go to app",
 
+    "latest-articles.title": "Latest articles",
+    "latest-articles.description": "Thoughts on development, cloud design, and the ever-evolving backend, infrastructure and devops topics.",
+    "latest-articles.view-all": "View all",
+    "artciles.read-article": "Read article",
+
     "contact.title": "Let's work together",
     "contact.description": "I'm always interested in new opportunities and collaborations. Feel free to reach out if you'd like to discuss a project or just say hello.",
     "contact.download-resume": "Download resume",
@@ -39,10 +44,14 @@ export const translations = {
     "projects.view-code": "Ver código",
     "projects.go-to-app": "Ir a la aplicación",
 
+    "latest-articles.title": "Últimos artículos",
+    "latest-articles.description": "Reflexiones y casos de estudio enfocados en el desarrollo backend, la nube, infrastructura cloud y devops.",
+    "latest-articles.view-all": "Ver todos",
+    "artciles.read-article": "Leer artículo",
+
     "contact.title": "Trabajemos juntos",
     "contact.description": "Siempre estoy abierto a nuevas oportunidades y colaboraciones. No dudes en contactarme si quieres conversar sobre un proyecto o simplemente saludar.",
     "contact.download-resume": "Descargar CV",
-
 
     "footer.all-rights-reserved": "Todos los derechos reservados"
   },
