@@ -11,7 +11,10 @@ const t = translate(lang);
 const LATEST_ARTICLES_LIMIT = 5;
 
 const articles = await getCollection("articles");
-const latestArticles = articles.slice(0, LATEST_ARTICLES_LIMIT);
+
+const latestArticles = articles
+  .toSorted((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, LATEST_ARTICLES_LIMIT);
 ---
 
 <section id="blog" class="py-20 px-6">
@@ -28,7 +31,7 @@ const latestArticles = articles.slice(0, LATEST_ARTICLES_LIMIT);
     <div class="space-y-8">
       {
         latestArticles.map((article) => (
-          <Article {...article.data} slug={article.id} readTime="5 min read" />
+          <Article {...article.data} slug={article.id} />
         ))
       }
     </div>

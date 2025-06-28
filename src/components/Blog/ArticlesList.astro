@@ -8,6 +8,9 @@ const lang = getLangFromUrl(Astro.url);
 const t = translate(lang);
 
 const articles = await getCollection("articles");
+const sortedArticles = articles.toSorted(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
 ---
 
 <section class="py-20 px-6 max-w-4xl mx-auto">
@@ -22,8 +25,8 @@ const articles = await getCollection("articles");
 
   <div class="space-y-8">
     {
-      articles.map((article) => (
-        <Article {...article.data} slug={article.id} readTime="5 min read" />
+      sortedArticles.map((article) => (
+        <Article {...article.data} slug={article.id} />
       ))
     }
   </div>

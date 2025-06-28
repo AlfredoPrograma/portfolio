@@ -1,11 +1,11 @@
 import type { Language } from "@i18n/utils"
 
 const englishDateFormatter = new Intl.DateTimeFormat("en-US", {
-  dateStyle: "short"
+  dateStyle: "long"
 })
 
 const spanishDateFormatter = new Intl.DateTimeFormat("es-VE", {
-  dateStyle: "short"
+  dateStyle: "long"
 })
 
 export function formatDate(date: Date, lang: Language) {
