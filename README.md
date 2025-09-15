@@ -1,40 +1,39 @@
-# 🧰 Alfredo Arvelaez – Software Developer | Cloud Engineer
+# 👋 Hi, I'm Alfredo Arvelaez; Software Developer & Cloud Engineer
 
-Hi there! I'm Alfredo a self-taught software developer with a strong background in building full-stack web applications and a growing passion for cloud architecture and DevOps practices. This portfolio highlights some of the projects, tools, and technologies I've used to solve real-world problems and level up my craft.
+## 🚀 About Me  
+Results-driven developer with 3+ years of experience in **full-stack development** and **cloud architecture**.  
+Passionate about building **scalable applications** and leveraging **cloud technologies** to deliver high-quality solutions.  
 
----
-
-## 🔍 About Me
-
-- 💼 Transitioning into **Cloud & DevOps roles**, with hands-on experience deploying apps using AWS, Docker, and Terraform.
-- 🧠 3+ years of experience building scalable apps using **React**, **TypeScript**, **Node.js**, **Golang**, and **PostgreSQL**.
-- ⚙️ Comfortable with designing and integrating **RESTful APIs**, **CI/CD pipelines**, and **infrastructure-as-code**.
-
-## 🛠️ Tech Stack
-
-**Frontend**
-- React, Next.js, Tailwind
-
-**Backend**
-- Node.js, Express, Golang, NestJS, PostgreSQL, MongoDB
-
-**Cloud & DevOps**
-- AWS (S3, EC2, Lambda, Rekognition, CloudFront, IAM, Route 53)
-- Docker, Terraform, GitHub Actions
-
-**Tools**
-- Git, VSCode, Postman, Figma
+I specialize in **TypeScript, Golang, React, AWS, containerization, and CI/CD pipelines**.  
+My work blends clean code practices, agile collaboration, and a strong focus on user experience.  
 
 ---
 
-## 📫 Contact
+## 🛠️ Technical Skills  
 
-Feel free to reach out if you’re interested in collaborating or want to talk tech!
-
-- 💼 [LinkedIn](https://linkedin.com/in/alfredoprograma)
-- 🌐 [Personal Website](https://alfredoprograma.dev)
-- 📧 Email: alfredoprograma.dev@gmail.com
+- **Languages:** JavaScript, TypeScript, Golang, PHP, Rust  
+- **Frameworks:** React, Next.js, Nest.js, Express.js, Laravel  
+- **Databases:** PostgreSQL, MySQL, MongoDB, DynamoDB, Redis  
+- **Cloud & DevOps:** AWS, Docker, Kubernetes, Terraform, Ansible, GitHub Actions  
+- **Tools:** Git/GitHub, GitLab, Bitbucket, Jira, Notion  
 
 ---
 
-Thanks for stopping by! ✌️
+## 📜 Certifications  
+- AWS Cloud Practitioner (2025–2028)  
+- AWS Solutions Architect Associate (2025–2028)  
+- Kubernetes and Cloud Native Associate (2025–2027)  
+- EF SET English Certificate — C2 Proficient  
+
+---
+
+## 🌱 Currently Exploring  
+- Advanced **Kubernetes orchestration** and **cloud-native patterns**  
+- Distributed systems with **Go**  
+- Infrastructure automation with **Terraform & Ansible**  
+
+---
+
+## 📫 Let's Connect!  
+💼 [LinkedIn](https://www.linkedin.com/in/alfredoprograma)  
+📧 [alfredoprograma.dev@gmail.com](mailto:alfredoprograma.dev@gmail.com)  
