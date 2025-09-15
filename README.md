@@ -1,7 +1,6 @@
 # 👋 Hi, I'm Alfredo Arvelaez; Software Developer & Cloud Engineer
 
-## 🚀 About Me  
-Results-driven developer with 3+ years of experience in **full-stack development** and **cloud architecture**.  
+Results-driven developer with 4 years of experience in **full-stack development** and **cloud architecture**.  
 Passionate about building **scalable applications** and leveraging **cloud technologies** to deliver high-quality solutions.  
 
 I specialize in **TypeScript, Golang, React, AWS, containerization, and CI/CD pipelines**.  
