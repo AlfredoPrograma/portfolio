@@ -1,6 +1,6 @@
 # 🧰 Alfredo Arvelaez – Software Developer | Cloud Engineer
 
-Hi there! I'm Alfredo – a self-taught software developer with a strong background in building full-stack web applications and a growing passion for cloud architecture and DevOps practices. This portfolio highlights some of the projects, tools, and technologies I've used to solve real-world problems and level up my craft.
+Hi there! I'm Alfredo a self-taught software developer with a strong background in building full-stack web applications and a growing passion for cloud architecture and DevOps practices. This portfolio highlights some of the projects, tools, and technologies I've used to solve real-world problems and level up my craft.
 
 ---
 
