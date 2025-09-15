@@ -26,13 +26,6 @@ My work blends clean code practices, agile collaboration, and a strong focus on 
 
 ---
 
-## 🌱 Currently Exploring  
-- Advanced **Kubernetes orchestration** and **cloud-native patterns**  
-- Distributed systems with **Go**  
-- Infrastructure automation with **Terraform & Ansible**  
-
----
-
 ## 📫 Let's Connect!  
 💼 [LinkedIn](https://www.linkedin.com/in/alfredoprograma)  
 📧 [alfredoprograma.dev@gmail.com](mailto:alfredoprograma.dev@gmail.com)  
