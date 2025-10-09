@@ -15,25 +15,25 @@ Once the replicas were deployed, they noticed that although each replica respond
 
 ## So, What Exactly Is a Load Balancer?
 
-A **load balancer** is a software component that sits between your application's clients and its servers. Its main role is to receive client requests and consistently redistribute them across multiple backend servers. Think of it as a highway interchange that connects traffic to different destinations efficiently.
+A load balancer is a software component that sits between your application's clients and its servers. Its main role is to receive client requests and consistently redistribute them across multiple backend servers. Think of it as a highway interchange that connects traffic to different destinations efficiently.
 
 ## Load Balancing Algorithms
 
-The way a load balancer distributes requests can vary depending on the desired strategy. Some algorithms aim for even distribution, while others ensure that requests from the same client always go to the same server. These strategies are known as **load balancing algorithms**. The most common are:
+The way a load balancer distributes requests can vary depending on the desired strategy. Some algorithms aim for even distribution, while others ensure that requests from the same client always go to the same server. These strategies are known as load balancing algorithms. The most common are:
 
-* **Round Robin**: Requests are distributed cyclically across all servers, without any preference. If you have 3 servers, each incoming request goes to the next one in line. This ensures a fair and even distribution of traffic.
+- Round Robin: Requests are distributed cyclically across all servers, without any preference. If you have 3 servers, each incoming request goes to the next one in line. This ensures a fair and even distribution of traffic.
 
-* **Weighted**: Each server is assigned a **weight** that defines how much traffic it should handle. This is useful when some servers have more resources than others. Requests are routed more frequently to more powerful servers.
+- Weighted: Each server is assigned a weight that defines how much traffic it should handle. This is useful when some servers have more resources than others. Requests are routed more frequently to more powerful servers.
 
-* **IP Hash**: A hash is generated based on the client's IP address, creating a unique and consistent identifier. Requests from the same IP are always directed to the same server, ensuring session consistency.
+- IP Hash: A hash is generated based on the client's IP address, creating a unique and consistent identifier. Requests from the same IP are always directed to the same server, ensuring session consistency.
 
 ## Hands On: Let's Build One
 
 To better understand how load balancing works, let’s build a small lab. We’ll use:
 
-* **Go (Golang)** to implement a simple HTTP server.
-* **Nginx** as our load balancer.
-* **Docker** to run everything in an isolated environment.
+- Go (Golang) to implement a simple HTTP server.
+- Nginx as our load balancer.
+- Docker to run everything in an isolated environment.
 
 ### Step 1: Creating Our Service
 
@@ -118,7 +118,7 @@ http {
 }
 ```
 
-**Let’s break it down:**
+Let’s break it down:
 
 * The `events` block is required by Nginx but doesn’t need any specific configuration here.
 * Inside the `http` block:
