@@ -30,7 +30,9 @@ const CONTACT_LINKS = [
       I'm always interested in new opportunities and collaborations. Feel free
       to reach out if you'd like to discuss a project or just say hello
     </p>
-    <div class="flex flex-col sm:flex-row gap-8 justify-center items-center">
+    <div
+      class="flex flex-col sm:flex-row gap-8 justify-center items-center mb-8"
+    >
       {
         CONTACT_LINKS.map(({ href, text, featured, download }) => (
           <ButtonLink
@@ -43,6 +45,18 @@ const CONTACT_LINKS = [
           </ButtonLink>
         ))
       }
+    </div>
+
+    <div>
+      <p
+        class="text-neutral-600 max-w-2xl mx-auto leading-relaxed text-balance mb-8"
+      >
+        Or send me an email at
+        <a
+          href="mailto:alfredoprograma.dev@gmail.com"
+          class="text-blue-600 hover:underline">alfredoprograma.dev@gmail.com</a
+        >
+      </p>
     </div>
   </div>
 </section>
