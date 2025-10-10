@@ -35,10 +35,9 @@ const sortedArticles = articles
     {
       sortedArticles.map((article) => (
         <Article
-          key={article.data.slug}
           date={article.data.date}
           excerpt={article.data.excerpt}
-          slug={article.data.canonicalSlug}
+          slug={article.data.slug}
           title={article.data.title}
           tags={article.data.tags}
           lang={lang}

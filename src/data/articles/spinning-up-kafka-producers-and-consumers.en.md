@@ -1,6 +1,6 @@
 ---
 lang: "en"
-slug: "spinning-up-kafka-en"
+slug: "spinning-up-kafka-producers-and-consumers"
 canonicalSlug: "spinning-up-kafka"
 title: "Setting up a Kafka event broker with producers and consumers"
 date: "2025-10-09"
@@ -173,7 +173,7 @@ func main() {
 This consumer listens for events from the same Kafka topic and logs them to the console.
 In a real system, each consumer would execute specific logic depending on the event type, such as sending emails, updating a database, or triggering another workflow.
 
-## Wrapping Up
+---
 
 Congratulations, you have just set up a complete local event driven workflow using Kafka and Go.
 You now understand how producers, consumers, and the Kafka broker work together to enable scalable asynchronous communication.

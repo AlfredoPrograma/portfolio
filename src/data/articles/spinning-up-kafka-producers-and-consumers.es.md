@@ -1,6 +1,6 @@
 ---
 lang: "es"
-slug: "spinning-up-kafka-es"
+slug: "configurar-kafka-productores-y-consumidores"
 canonicalSlug: "spinning-up-kafka"
 title: "Configurar un broker de eventos Kafka con productores y consumidores"
 date: "2025-10-09"
@@ -10,7 +10,7 @@ tags: ["Kafka", "Microservicios", "Golang", "Docker"]
 
 En el desarrollo de software buscamos constantemente nuevas formas de crear sistemas escalables y resilientes. Probamos herramientas, frameworks y arquitecturas que, cuando funcionan, se convierten en patrones repetibles para proyectos con necesidades similares.
 
-Uno de esos patrones modernos es la arquitectura dirigida por eventos y el *event streaming*, donde cada servicio ejecuta su lógica de negocios de manera independiente y se coordina con el resto mediante eventos. Este enfoque permite aplicaciones más escalables, confiables y flexibles.
+Uno de esos patrones modernos es la arquitectura dirigida por eventos y el event streaming, donde cada servicio ejecuta su lógica de negocios de manera independiente y se coordina con el resto mediante eventos. Este enfoque permite aplicaciones más escalables, confiables y flexibles.
 
 ## ¿Qué es el event streaming?
 
@@ -22,9 +22,9 @@ Como cada servicio consume sólo los eventos que necesita, el acoplamiento se re
 
 Imagina el flujo de registro de usuarios en una aplicación web. Al registrarse, el sistema podría tener que:
 
-* Enviar un correo de bienvenida
-* Suscribir a la persona al boletín
-* Disparar una notificación móvil con un código de descuento
+- Enviar un correo de bienvenida
+- Suscribir a la persona al boletín
+- Disparar una notificación móvil con un código de descuento
 
 En un enfoque monolítico, el módulo de usuarios se encargaría de todo, lo que complica el mantenimiento. Con eventos, el servicio de usuarios únicamente emite `UserRegistered` y los demás servicios reaccionan de forma asíncrona. El resultado es un sistema más limpio y escalable.
 
@@ -32,11 +32,11 @@ En un enfoque monolítico, el módulo de usuarios se encargaría de todo, lo que
 
 El broker es el megáfono que transmite los eventos a todos los consumidores interesados. Ahí es donde entra Kafka.
 
-Apache Kafka es una plataforma distribuida de *event streaming* que conecta productores (quienes publican mensajes) con consumidores (quienes los procesan). Funciona como un canal por donde los datos fluyen continuamente entre servicios.
+Apache Kafka es una plataforma distribuida de event streaming que conecta productores (quienes publican mensajes) con consumidores (quienes los procesan). Funciona como un canal por donde los datos fluyen continuamente entre servicios.
 
-Kafka está construido sobre un modelo *publish/subscribe* que garantiza entrega confiable y almacenamiento persistente. A diferencia de brokers tradicionales como RabbitMQ, ofrece garantías más fuertes sobre orden, durabilidad y tolerancia a fallos.
+Kafka está construido sobre un modelo publish/subscribe que garantiza entrega confiable y almacenamiento persistente. A diferencia de brokers tradicionales como RabbitMQ, ofrece garantías más fuertes sobre orden, durabilidad y tolerancia a fallos.
 
-Otra ventaja es su capacidad de persistir mensajes en un *log* distribuido, lo cual permite reproducir eventos para depuración o reprocesamiento cuando sea necesario.
+Otra ventaja es su capacidad de persistir mensajes en un log distribuido, lo cual permite reproducir eventos para depuración o reprocesamiento cuando sea necesario.
 
 ## Ejecutar Kafka localmente
 
@@ -161,8 +161,8 @@ func main() {
 
 Este consumidor imprime cada evento recibido. En un sistema real podrías enviar correos, actualizar una base de datos o disparar otro flujo según el tipo de evento.
 
-## Conclusiones
+---
 
 Con esto tienes un flujo de eventos completo usando Kafka y Go. Aprendiste cómo productores, consumidores y el broker se coordinan para habilitar comunicación asíncrona escalable.
 
-Kafka ofrece muchas más capacidades: tópicos particionados, *consumer groups*, manejo de *offsets* y políticas de retención, entre otras. Las exploraremos en futuras entregas.
+Kafka ofrece muchas más capacidades: tópicos particionados, grupos de consumidores, manejo de offsets y políticas de retención, entre otras. Algunas de ellas las exploraremos en futuros artículo.

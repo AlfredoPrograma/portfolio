@@ -1,12 +1,8 @@
 ---
 import type { NavLinkProps } from "./NavLink.astro";
 import NavLink from "./NavLink.astro";
-import {
-  LANGUAGES,
-  SUPPORTED_LANGS,
-  createLangHref,
-  type Lang,
-} from "@i18n/config";
+import { getCollection } from "astro:content";
+import { SUPPORTED_LANGS, createLangHref, type Lang } from "@i18n/config";
 import type { UIStrings } from "@i18n/dictionaries";
 
 interface NavbarProps {
@@ -17,6 +13,22 @@ interface NavbarProps {
 type Props = NavbarProps;
 
 const { lang, nav } = Astro.props;
+
+const articles = await getCollection("articles");
+
+const slugToCanonicalByLang = Object.fromEntries(
+  SUPPORTED_LANGS.map((code) => [code, {} as Record<string, string>])
+) as Record<Lang, Record<string, string>>;
+
+const canonicalToSlug: Record<string, Partial<Record<Lang, string>>> = {};
+
+for (const article of articles) {
+  const { canonicalSlug, slug } = article.data;
+  const articleLang = article.data.lang as Lang;
+
+  slugToCanonicalByLang[articleLang][slug] = canonicalSlug;
+  (canonicalToSlug[canonicalSlug] ??= {})[articleLang] = slug;
+}
 
 const navLinks: NavLinkProps[] = [
   {
@@ -43,6 +55,23 @@ function getLanguageHref(targetLang: Lang) {
   if (!remainder) {
     return `/${targetLang}`;
   }
+
+  if (remainderSegments[0] === "blog" && remainderSegments.length > 1) {
+    const currentSlug = remainderSegments[1]!;
+    const canonical = slugToCanonicalByLang[lang]?.[currentSlug];
+
+    if (canonical) {
+      const targetSlug = canonicalToSlug[canonical]?.[targetLang];
+
+      if (targetSlug) {
+        const targetPath = `/${targetLang}/blog/${targetSlug}`;
+        return `${targetPath}${search}${hash}`;
+      }
+
+      return `/${targetLang}/blog${search}${hash}`;
+    }
+  }
+
   const basePath = `/${targetLang}/${remainder}`;
   return `${basePath}${search}${hash}`;
 }

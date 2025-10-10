@@ -10,9 +10,10 @@ export async function getStaticPaths() {
     .filter((article) => article.data.lang === DEFAULT_LANG)
     .map((article) => ({
       params: { id: article.data.canonicalSlug },
+      props: { slug: article.data.slug },
     }));
 }
 
-const { id } = Astro.params;
-return Astro.redirect(`/${DEFAULT_LANG}/blog/${id}`, 308);
+const { slug } = Astro.props;
+return Astro.redirect(`/${DEFAULT_LANG}/blog/${slug}`, 308);
 ---
