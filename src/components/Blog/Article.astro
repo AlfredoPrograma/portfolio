@@ -1,5 +1,4 @@
 ---
-import ButtonLink from "@components/Button/ButtonLink.astro";
 import Chip from "@components/Chip/Chip.astro";
 import { formatDate } from "@utils/date";
 import { createLangHref, type Lang } from "@i18n/config";
@@ -22,35 +21,38 @@ type Props = ArticleProps & ArticleTranslations;
 
 const { date, excerpt, slug, tags, title, lang, readLabel, dateLocale } =
   Astro.props;
+
+const href = createLangHref(lang, `/blog/${slug}`);
 ---
 
 <article
-  class="bg-white border border-neutral-200 rounded-sm p-8 shadow-sm hover:border-neutral-300 transition-colors"
+  class="relative bg-white border border-neutral-200 rounded-sm p-8 shadow-sm transition-all duration-200 group hover:-translate-y-1 hover:shadow-lg hover:border-neutral-300 hover:bg-neutral-50"
 >
+  <a
+    href={href}
+    aria-label={`${readLabel}: ${title}`}
+    class="absolute inset-0 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
+  ></a>
   <div class="flex flex-col space-y-4">
     <header class="space-y-1">
       <time class="text-xs text-muted block" datetime={date.toISOString()}>
         {formatDate(date, dateLocale)}
       </time>
       <h3
-        class="text-2xl font-medium text-heading hover:text-body transition-colors"
+        class="text-2xl font-medium text-heading transition-colors group-hover:text-heading group-hover:underline"
       >
-        <a href={createLangHref(lang, `/blog/${slug}`)} class="block">
-          {title}
-        </a>
+        {title}
       </h3>
     </header>
 
-    <p class="text-body leading-relaxed">{excerpt}</p>
+    <p
+      class="text-body leading-relaxed transition-colors group-hover:text-heading"
+    >
+      {excerpt}
+    </p>
 
     <div class="flex flex-wrap gap-2">
       {tags.map((text) => <Chip>{text}</Chip>)}
-    </div>
-
-    <div class="pt-2">
-      <ButtonLink href={createLangHref(lang, `/blog/${slug}`)}>
-        {readLabel}
-      </ButtonLink>
     </div>
   </div>
 </article>
