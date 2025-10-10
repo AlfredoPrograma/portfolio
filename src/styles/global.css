@@ -4,3 +4,72 @@
 @theme {
   --font-inter: 'Inter', 'sans-seriff';
 }
+
+@layer base {
+  :root {
+    --text-heading: var(--color-neutral-900);
+    --text-body: var(--color-neutral-700);
+    --text-muted: var(--color-neutral-500);
+  }
+}
+
+@layer utilities {
+  .text-heading {
+    color: var(--text-heading);
+  }
+
+  .text-body {
+    color: var(--text-body);
+  }
+
+  .text-muted {
+    color: var(--text-muted);
+  }
+
+  .hover\:text-heading:hover {
+    color: var(--text-heading);
+  }
+
+  .hover\:text-body:hover {
+    color: var(--text-body);
+  }
+
+  .hover\:text-muted:hover {
+    color: var(--text-muted);
+  }
+}
+
+@utility prose-neutral {
+  --tw-prose-body: var(--text-body);
+  --tw-prose-headings: var(--text-heading);
+  --tw-prose-lead: var(--text-body);
+  --tw-prose-links: var(--text-heading);
+  --tw-prose-bold: var(--text-heading);
+  --tw-prose-counters: var(--text-muted);
+  --tw-prose-bullets: var(--color-neutral-400);
+  --tw-prose-hr: var(--color-neutral-300);
+  --tw-prose-quotes: var(--text-heading);
+  --tw-prose-quote-borders: var(--color-neutral-300);
+  --tw-prose-captions: var(--text-muted);
+  --tw-prose-code: var(--text-heading);
+  --tw-prose-pre-code: var(--color-neutral-100);
+  --tw-prose-pre-bg: var(--color-neutral-900);
+  --tw-prose-th-borders: var(--color-neutral-300);
+  --tw-prose-td-borders: var(--color-neutral-200);
+  --tw-prose-invert-body: var(--color-neutral-200);
+  --tw-prose-invert-headings: var(--color-white);
+  --tw-prose-invert-lead: var(--color-neutral-300);
+  --tw-prose-invert-links: var(--color-white);
+  --tw-prose-invert-bold: var(--color-white);
+  --tw-prose-invert-counters: var(--color-neutral-400);
+  --tw-prose-invert-bullets: var(--color-neutral-600);
+  --tw-prose-invert-hr: var(--color-neutral-700);
+  --tw-prose-invert-quotes: var(--color-neutral-100);
+  --tw-prose-invert-quote-borders: var(--color-neutral-700);
+  --tw-prose-invert-captions: var(--color-neutral-400);
+  --tw-prose-invert-code: var(--color-white);
+  --tw-prose-invert-pre-code: var(--color-neutral-300);
+  --tw-prose-invert-pre-bg: rgb(0 0 0 / 50%);
+  --tw-prose-invert-th-borders: var(--color-neutral-600);
+  --tw-prose-invert-td-borders: var(--color-neutral-700);
+}

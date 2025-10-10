@@ -21,7 +21,7 @@ const { href, download, variant = "fill", size = "sm" } = Astro.props;
   class={cn({
     "inline-flex items-center justify-center bg-neutral-900 text-white hover:bg-neutral-800 transition-colors rounded-sm font-medium":
       variant === "fill",
-    "inline-flex items-center justify-center bg-white border border-neutral-300 text-neutral-700 hover:border-neutral-400 hover:text-neutral-900 transition-colors rounded-sm font-medium":
+    "inline-flex items-center justify-center bg-white border border-neutral-300 text-body hover:border-neutral-400 hover:text-heading transition-colors rounded-sm font-medium":
       variant === "outline",
     "px-4 py-2": size === "sm",
     "px-8 py-3": size === "lg",

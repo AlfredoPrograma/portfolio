@@ -13,10 +13,10 @@ const { copy } = Astro.props;
 <section id="experience" class="py-20 px-6 bg-neutral-100">
   <div class="max-w-4xl mx-auto">
     <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-light text-neutral-900 mb-4">
+      <h2 class="text-3xl md:text-4xl font-light text-heading mb-4">
         {copy.title}
       </h2>
-      <p class="text-lg text-neutral-700 max-w-2xl mx-auto leading-relaxed">
+      <p class="text-lg text-body max-w-2xl mx-auto leading-relaxed">
         {copy.subtitle}
       </p>
     </div>
@@ -24,27 +24,27 @@ const { copy } = Astro.props;
     <div class="space-y-8">
       {
         copy.positions.map((position) => (
-          <article class="bg-white border border-neutral-200 rounded-sm p-8">
+          <article class="bg-white border border-neutral-200 rounded-sm p-8 shadow-sm hover:border-neutral-300 transition-colors">
             <header class="flex flex-col md:flex-row md:items-center md:justify-between gap-1">
               <div>
-                <h3 class="text-2xl font-medium text-neutral-900">
+                <h3 class="text-2xl font-medium text-heading">
                   {position.role}
                 </h3>
-                <p class="text-neutral-500 text-sm uppercase tracking-wide">
+                <p class="text-muted text-sm uppercase tracking-wide">
                   {position.company}
                 </p>
               </div>
-              <p class="text-xs text-neutral-500 font-medium uppercase tracking-wide">
+              <p class="text-xs text-muted font-medium uppercase tracking-wide">
                 {position.period}
               </p>
             </header>
 
             <div class="mt-6 space-y-4">
-              <p class="text-neutral-700 leading-relaxed">
+              <p class="text-body leading-relaxed">
                 {position.description}
               </p>
               {position.highlights.length > 0 && (
-                <ul class="list-disc pl-5 space-y-2 text-neutral-700 leading-relaxed marker:text-neutral-400">
+                <ul class="list-disc pl-5 space-y-2 text-body leading-relaxed marker:text-neutral-400">
                   {position.highlights.map((highlight) => (
                     <li>{highlight}</li>
                   ))}

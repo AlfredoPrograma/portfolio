@@ -16,15 +16,13 @@ const { copy } = Astro.props;
   class="min-h-screen flex items-center justify-center px-6 pt-14"
 >
   <div class="max-w-4xl mx-auto text-center">
-    <h1
-      class="text-5xl md:text-7xl font-light text-neutral-900 mb-4 leading-tight"
-    >
+    <h1 class="text-5xl md:text-7xl font-light text-heading mb-4 leading-tight">
       {copy.name}
     </h1>
-    <p class="text-xl md:text-3xl text-neutral-600 mb-8 font-light underline">
+    <p class="text-xl md:text-3xl text-body mb-8 font-light underline">
       {copy.role}
     </p>
-    <p class="text-lg text-neutral-600 max-w-2xl mx-auto leading-relaxed mb-12">
+    <p class="text-lg text-body max-w-2xl mx-auto leading-relaxed mb-12">
       {copy.description}
     </p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center">

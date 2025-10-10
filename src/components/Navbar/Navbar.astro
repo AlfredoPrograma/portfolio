@@ -89,7 +89,7 @@ function getLanguageHref(targetLang: Lang) {
       </div>
 
       <div
-        class="flex items-center gap-2 text-sm text-neutral-600 uppercase tracking-wide"
+        class="flex items-center gap-2 text-sm text-muted uppercase tracking-wide"
         aria-label={nav.languageSwitcherLabel}
       >
         {
@@ -98,8 +98,8 @@ function getLanguageHref(targetLang: Lang) {
               href={getLanguageHref(code)}
               class={
                 code === lang
-                  ? "text-neutral-900 font-semibold"
-                  : "hover:text-neutral-900 transition-colors"
+                  ? "text-heading font-semibold"
+                  : "hover:text-heading transition-colors"
               }
             >
               {code.toUpperCase()}

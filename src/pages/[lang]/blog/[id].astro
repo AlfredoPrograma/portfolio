@@ -31,17 +31,16 @@ const pageTitle = `${article.data.title} | ${dictionary.meta.blog} | ${dictionar
   <main class="pt-14">
     <div class="py-20 px-6 max-w-4xl mx-auto">
       <header class="mb-4 pb-6 border-b border-neutral-600">
-        <a href={createLangHref(lang, "/blog")} class="text-sm mb-2 block underline">
+        <a
+          href={createLangHref(lang, "/blog")}
+          class="text-sm text-muted hover:text-heading transition-colors mb-2 block underline"
+        >
           {dictionary.post.backToBlog}
         </a>
 
-        <h1 class="text-3xl md:text-4xl font-light text-neutral-900 mb-4">
+        <h1 class="text-3xl md:text-4xl font-light text-heading mb-4">
           {article.data.title}
         </h1>
-        <p class="text-lg italic text-neutral-600 leading-relaxed mb-4">
-          {article.data.excerpt}
-        </p>
-
         <div class="flex flex-wrap gap-2">
           {article.data.tags.map((text) => <Chip>{text}</Chip>)}
         </div>
