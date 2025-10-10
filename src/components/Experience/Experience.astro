@@ -1,0 +1,59 @@
+---
+import type { UIStrings } from "@i18n/dictionaries";
+
+interface ExperienceProps {
+  copy: UIStrings["experience"];
+}
+
+type Props = ExperienceProps;
+
+const { copy } = Astro.props;
+---
+
+<section id="experience" class="py-20 px-6 bg-neutral-100">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-light text-neutral-900 mb-4">
+        {copy.title}
+      </h2>
+      <p class="text-lg text-neutral-700 max-w-2xl mx-auto leading-relaxed">
+        {copy.subtitle}
+      </p>
+    </div>
+
+    <div class="space-y-8">
+      {
+        copy.positions.map((position) => (
+          <article class="bg-white border border-neutral-200 rounded-sm p-8">
+            <header class="flex flex-col md:flex-row md:items-center md:justify-between gap-1">
+              <div>
+                <h3 class="text-2xl font-medium text-neutral-900">
+                  {position.role}
+                </h3>
+                <p class="text-neutral-500 text-sm uppercase tracking-wide">
+                  {position.company}
+                </p>
+              </div>
+              <p class="text-xs text-neutral-500 font-medium uppercase tracking-wide">
+                {position.period}
+              </p>
+            </header>
+
+            <div class="mt-6 space-y-4">
+              <p class="text-neutral-700 leading-relaxed">
+                {position.description}
+              </p>
+              {position.highlights.length > 0 && (
+                <ul class="list-disc pl-5 space-y-2 text-neutral-700 leading-relaxed marker:text-neutral-400">
+                  {position.highlights.map((highlight) => (
+                    <li>{highlight}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

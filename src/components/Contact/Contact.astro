@@ -18,17 +18,15 @@ type Props = ContactProps;
 const { copy, links } = Astro.props;
 ---
 
-<section id="contact" class="py-20 px-6">
+<section id="contact" class="py-20 px-6 bg-neutral-100">
   <div class="max-w-4xl mx-auto text-center">
     <h2 class="text-3xl md:text-4xl font-light text-neutral-900 mb-8">
       {copy.title}
     </h2>
-    <p class="text-lg text-neutral-600 mb-12 max-w-2xl mx-auto leading-relaxed">
+    <p class="text-lg text-neutral-700 mb-12 max-w-2xl mx-auto leading-relaxed">
       {copy.description}
     </p>
-    <div
-      class="flex flex-col sm:flex-row gap-8 justify-center items-center mb-8"
-    >
+    <div class="flex flex-col sm:flex-row gap-8 justify-center items-center mb-8">
       {
         links.map(({ href, text, featured, download }) => (
           <ButtonLink
@@ -44,15 +42,12 @@ const { copy, links } = Astro.props;
     </div>
 
     <div>
-      <p
-        class="text-neutral-600 max-w-2xl mx-auto leading-relaxed text-balance"
-      >
+      <p class="text-neutral-700 max-w-2xl mx-auto leading-relaxed text-balance">
         {copy.emailIntro}
         {" "}
-        <a
-          href={`mailto:${copy.emailLinkText}`}
-          class="text-blue-600 hover:underline">{copy.emailLinkText}</a
-        >
+        <a href={`mailto:${copy.emailLinkText}`} class="text-blue-600 hover:underline">
+          {copy.emailLinkText}
+        </a>
       </p>
     </div>
   </div>

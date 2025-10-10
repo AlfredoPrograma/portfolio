@@ -2,6 +2,7 @@
 import Layout from "@layouts/Layout.astro";
 import Navbar from "@components/Navbar/Navbar.astro";
 import Hero from "@components/Hero/Hero.astro";
+import Experience from "@components/Experience/Experience.astro";
 import LatestArticles from "@components/Blog/LatestArticles.astro";
 import Contact from "@components/Contact/Contact.astro";
 import { SUPPORTED_LANGS, type Lang } from "@i18n/config";
@@ -40,6 +41,7 @@ const contactLinks = [
 <Layout lang={lang} title={pageTitle}>
   <Navbar lang={lang} nav={dictionary.nav} />
   <Hero copy={dictionary.hero} />
+  <Experience copy={dictionary.experience} />
   <LatestArticles
     lang={lang}
     copy={dictionary.latestArticles}

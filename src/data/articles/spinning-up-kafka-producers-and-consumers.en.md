@@ -175,7 +175,7 @@ In a real system, each consumer would execute specific logic depending on the ev
 
 ---
 
-Congratulations, you have just set up a complete local event driven workflow using Kafka and Go.
+Nice! You have just set up a complete local event driven workflow using Kafka and Go.
 You now understand how producers, consumers, and the Kafka broker work together to enable scalable asynchronous communication.
 
 This was only the beginning. Kafka offers far more powerful features such as topics, partitions, consumer groups, offsets, and retention policies that enable robust distributed processing at scale.
