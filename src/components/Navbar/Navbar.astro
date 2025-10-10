@@ -52,7 +52,9 @@ function getLanguageHref(targetLang: Lang) {
   class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm border-b border-neutral-200 z-50"
 >
   <nav class="max-w-4xl mx-auto px-6 py-4">
-    <div class="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+    <div
+      class="flex flex-col items-center gap-4 sm:flex-row sm:justify-between"
+    >
       <div class="flex justify-center items-center gap-6">
         {navLinks.map((props) => <NavLink {...props} />)}
       </div>
@@ -61,18 +63,20 @@ function getLanguageHref(targetLang: Lang) {
         class="flex items-center gap-2 text-sm text-neutral-600 uppercase tracking-wide"
         aria-label={nav.languageSwitcherLabel}
       >
-        {SUPPORTED_LANGS.map((code) => (
-          <a
-            href={getLanguageHref(code)}
-            class={
-              code === lang
-                ? "text-neutral-900 font-semibold"
-                : "hover:text-neutral-900 transition-colors"
-            }
-          >
-            {LANGUAGES[code]}
-          </a>
-        ))}
+        {
+          SUPPORTED_LANGS.map((code) => (
+            <a
+              href={getLanguageHref(code)}
+              class={
+                code === lang
+                  ? "text-neutral-900 font-semibold"
+                  : "hover:text-neutral-900 transition-colors"
+              }
+            >
+              {code.toUpperCase()}
+            </a>
+          ))
+        }
       </div>
     </div>
   </nav>

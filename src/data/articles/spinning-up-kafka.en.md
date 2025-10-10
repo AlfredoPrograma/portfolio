@@ -1,7 +1,10 @@
 ---
+lang: "en"
+slug: "spinning-up-kafka-en"
+canonicalSlug: "spinning-up-kafka"
 title: "Setting up a Kafka event broker with producers and consumers"
 date: "2025-10-09"
-excerpt: "Learn the fundamentals of event streaming with Kafka and how to build producers and consumers in Go." 
+excerpt: "Learn the fundamentals of event streaming with Kafka and how to build producers and consumers in Go."
 tags: ["Kafka", "Microservices", "Golang", "Docker"]
 ---
 
@@ -77,47 +80,47 @@ We will use Go and the `confluent-kafka-go` package to connect and publish messa
 package main
 
 import (
-	"errors"
-	"io"
-	"log"
-	"net/http"
+  "errors"
+  "io"
+  "log"
+  "net/http"
 
-	"gopkg.in/confluentinc/confluent-kafka-go.v1/kafka"
+  "gopkg.in/confluentinc/confluent-kafka-go.v1/kafka"
 )
 
 var kafkaMainTopic = "main_topic"
 
 func main() {
-	producer, err := kafka.NewProducer(&kafka.ConfigMap{
-		"bootstrap.servers": "localhost:9092",
-		"client.id":         "kafka_producer_example",
-	})
-	if err != nil {
-		log.Fatal("failed to initiate Kafka producer:", err)
-	}
+  producer, err := kafka.NewProducer(&kafka.ConfigMap{
+    "bootstrap.servers": "localhost:9092",
+    "client.id":         "kafka_producer_example",
+  })
+  if err != nil {
+    log.Fatal("failed to initiate Kafka producer:", err)
+  }
 
-	http.HandleFunc("POST /", func(w http.ResponseWriter, r *http.Request) {
-		event := make([]byte, 512)
-		read, err := r.Body.Read(event)
-		if err != nil && !errors.Is(err, io.EOF) {
-			http.Error(w, "failed to read request body", http.StatusInternalServerError)
-			return
-		}
+  http.HandleFunc("POST /", func(w http.ResponseWriter, r *http.Request) {
+    event := make([]byte, 512)
+    read, err := r.Body.Read(event)
+    if err != nil && !errors.Is(err, io.EOF) {
+      http.Error(w, "failed to read request body", http.StatusInternalServerError)
+      return
+    }
 
-		err = producer.Produce(&kafka.Message{
-			TopicPartition: kafka.TopicPartition{Topic: &kafkaMainTopic},
-			Value:          event[:read],
-		}, nil)
-		if err != nil {
-			http.Error(w, "failed to send event to Kafka", http.StatusInternalServerError)
-			return
-		}
+    err = producer.Produce(&kafka.Message{
+      TopicPartition: kafka.TopicPartition{Topic: &kafkaMainTopic},
+      Value:          event[:read],
+    }, nil)
+    if err != nil {
+      http.Error(w, "failed to send event to Kafka", http.StatusInternalServerError)
+      return
+    }
 
-		w.WriteHeader(http.StatusOK)
-	})
+    w.WriteHeader(http.StatusOK)
+  })
 
-	log.Println("Producer listening on port 8080")
-	http.ListenAndServe(":8080", nil)
+  log.Println("Producer listening on port 8080")
+  http.ListenAndServe(":8080", nil)
 }
 ```
 
@@ -133,37 +136,37 @@ This service subscribes to the same topic and prints every message it receives:
 package main
 
 import (
-	"fmt"
-	"log"
+  "fmt"
+  "log"
 
-	"gopkg.in/confluentinc/confluent-kafka-go.v1/kafka"
+  "gopkg.in/confluentinc/confluent-kafka-go.v1/kafka"
 )
 
 var kafkaMainTopic = "main_topic"
 var pollInterval = 100
 
 func main() {
-	consumer, err := kafka.NewConsumer(&kafka.ConfigMap{
-		"bootstrap.servers": "localhost:9092",
-		"group.id":          "kafka_consumer_example",
-	})
-	if err != nil {
-		log.Fatal("failed to initiate Kafka consumer:", err)
-	}
+  consumer, err := kafka.NewConsumer(&kafka.ConfigMap{
+    "bootstrap.servers": "localhost:9092",
+    "group.id":          "kafka_consumer_example",
+  })
+  if err != nil {
+    log.Fatal("failed to initiate Kafka consumer:", err)
+  }
 
-	if err = consumer.SubscribeTopics([]string{kafkaMainTopic}, nil); err != nil {
-		log.Fatalf("failed to subscribe to topic %s: %v", kafkaMainTopic, err)
-	}
+  if err = consumer.SubscribeTopics([]string{kafkaMainTopic}, nil); err != nil {
+    log.Fatalf("failed to subscribe to topic %s: %v", kafkaMainTopic, err)
+  }
 
-	for {
-		event := consumer.Poll(pollInterval)
-		switch e := event.(type) {
-		case *kafka.Message:
-			fmt.Printf("RECEIVED: %s\n", string(e.Value))
-		default:
-			continue
-		}
-	}
+  for {
+    event := consumer.Poll(pollInterval)
+    switch e := event.(type) {
+      case *kafka.Message:
+        fmt.Printf("RECEIVED: %s\n", string(e.Value))
+      default:
+        continue
+    }
+  }
 }
 ```
 

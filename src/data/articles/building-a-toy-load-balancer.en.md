@@ -1,4 +1,7 @@
 ---
+lang: "en"
+slug: "building-a-toy-load-balancer-en"
+canonicalSlug: "building-a-toy-load-balancer"
 title: "Setting up load balancer with Docker"
 date: "2025-06-29"
 excerpt: "We'll explore how to setup a containerized load balancer to provide an evenly requests distribution among backend application replicas using Nginx and Docker."
@@ -43,16 +46,16 @@ We’ll start by building a tiny HTTP server that simulates our application. It 
 package main
 
 import (
-	"net/http"
+  "net/http"
 )
 
 func main() {
-	http.HandleFunc("GET /", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("Hello world!"))
-	})
+  http.HandleFunc("GET /", func(w http.ResponseWriter, r *http.Request) {
+    w.Write([]byte("Hello world!"))
+  })
 
-	// Start the HTTP server on port 80
-	http.ListenAndServe("", nil)
+  // Start the HTTP server on port 80
+  http.ListenAndServe("", nil)
 }
 ```
 

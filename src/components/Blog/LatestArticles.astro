@@ -19,6 +19,7 @@ const LATEST_ARTICLES_LIMIT = 5;
 const articles = await getCollection("articles");
 
 const latestArticles = articles
+  .filter((article) => article.data.lang === lang)
   .toSorted((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, LATEST_ARTICLES_LIMIT);
 ---
@@ -38,8 +39,12 @@ const latestArticles = articles
       {
         latestArticles.map((article) => (
           <Article
-            {...article.data}
-            slug={article.id}
+            key={article.data.slug}
+            date={article.data.date}
+            excerpt={article.data.excerpt}
+            slug={article.data.canonicalSlug}
+            title={article.data.title}
+            tags={article.data.tags}
             lang={lang}
             readLabel={copy.readArticle}
             dateLocale={dateLocale}

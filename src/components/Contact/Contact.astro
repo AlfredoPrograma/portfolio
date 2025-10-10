@@ -45,14 +45,13 @@ const { copy, links } = Astro.props;
 
     <div>
       <p
-        class="text-neutral-600 max-w-2xl mx-auto leading-relaxed text-balance mb-8"
+        class="text-neutral-600 max-w-2xl mx-auto leading-relaxed text-balance"
       >
         {copy.emailIntro}
         {" "}
         <a
           href={`mailto:${copy.emailLinkText}`}
-          class="text-blue-600 hover:underline"
-          >{copy.emailLinkText}</a
+          class="text-blue-600 hover:underline">{copy.emailLinkText}</a
         >
       </p>
     </div>

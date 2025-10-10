@@ -4,11 +4,7 @@ import Navbar from "@components/Navbar/Navbar.astro";
 import Prose from "@components/Blog/Prose.astro";
 import Chip from "@components/Chip/Chip.astro";
 import { getCollection, render } from "astro:content";
-import {
-  SUPPORTED_LANGS,
-  type Lang,
-  createLangHref,
-} from "@i18n/config";
+import { type Lang, createLangHref } from "@i18n/config";
 import { getDictionary } from "@i18n/dictionaries";
 
 export const prerender = true;
@@ -16,16 +12,14 @@ export const prerender = true;
 export async function getStaticPaths() {
   const articles = await getCollection("articles");
 
-  return SUPPORTED_LANGS.flatMap((lang) =>
-    articles.map((article) => ({
-      params: { lang, id: article.id },
-      props: { article },
-    }))
-  );
+  return articles.map((article) => ({
+    params: { lang: article.data.lang, id: article.data.canonicalSlug },
+    props: { article },
+  }));
 }
 
 const { article } = Astro.props;
-const lang = Astro.params.lang as Lang;
+const lang = article.data.lang as Lang;
 const dictionary = getDictionary(lang);
 const { Content } = await render(article);
 const pageTitle = `${article.data.title} | ${dictionary.meta.blog} | ${dictionary.meta.brand}`;

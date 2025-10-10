@@ -16,9 +16,9 @@ type Props = ArticlesListProps;
 const { lang, copy, articleReadLabel, dateLocale } = Astro.props;
 
 const articles = await getCollection("articles");
-const sortedArticles = articles.toSorted(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-);
+const sortedArticles = articles
+  .filter((article) => article.data.lang === lang)
+  .toSorted((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
 <section class="py-20 px-6 max-w-4xl mx-auto">
@@ -35,8 +35,12 @@ const sortedArticles = articles.toSorted(
     {
       sortedArticles.map((article) => (
         <Article
-          {...article.data}
-          slug={article.id}
+          key={article.data.slug}
+          date={article.data.date}
+          excerpt={article.data.excerpt}
+          slug={article.data.canonicalSlug}
+          title={article.data.title}
+          tags={article.data.tags}
           lang={lang}
           readLabel={articleReadLabel}
           dateLocale={dateLocale}
