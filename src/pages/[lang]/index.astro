@@ -1,0 +1,49 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Navbar from "@components/Navbar/Navbar.astro";
+import Hero from "@components/Hero/Hero.astro";
+import LatestArticles from "@components/Blog/LatestArticles.astro";
+import Contact from "@components/Contact/Contact.astro";
+import { SUPPORTED_LANGS, type Lang } from "@i18n/config";
+import { getDictionary } from "@i18n/dictionaries";
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return SUPPORTED_LANGS.map((lang) => ({
+    params: { lang },
+  }));
+}
+
+const lang = Astro.params.lang as Lang;
+const dictionary = getDictionary(lang);
+const pageTitle = `${dictionary.meta.home} | ${dictionary.meta.brand}`;
+
+const contactLinks = [
+  {
+    href: "https://www.linkedin.com/in/alfredoprograma/",
+    text: "LinkedIn",
+    featured: true,
+  },
+  {
+    href: "https://github.com/AlfredoPrograma",
+    text: "Github",
+  },
+  {
+    href: "/Alfredo-Arvelaez-CV.pdf",
+    text: dictionary.contact.resumeCta,
+    download: true,
+  },
+];
+---
+
+<Layout lang={lang} title={pageTitle}>
+  <Navbar lang={lang} nav={dictionary.nav} />
+  <Hero copy={dictionary.hero} />
+  <LatestArticles
+    lang={lang}
+    copy={dictionary.latestArticles}
+    dateLocale={dictionary.locale.date}
+  />
+  <Contact copy={dictionary.contact} links={contactLinks} />
+</Layout>

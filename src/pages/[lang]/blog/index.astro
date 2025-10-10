@@ -1,0 +1,32 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Navbar from "@components/Navbar/Navbar.astro";
+import ArticlesList from "@components/Blog/ArticlesList.astro";
+import { SUPPORTED_LANGS, type Lang } from "@i18n/config";
+import { getDictionary } from "@i18n/dictionaries";
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return SUPPORTED_LANGS.map((lang) => ({
+    params: { lang },
+  }));
+}
+
+const lang = Astro.params.lang as Lang;
+const dictionary = getDictionary(lang);
+const pageTitle = `${dictionary.meta.blog} | ${dictionary.meta.brand}`;
+---
+
+<Layout lang={lang} title={pageTitle}>
+  <Navbar lang={lang} nav={dictionary.nav} />
+
+  <main class="pt-14">
+    <ArticlesList
+      lang={lang}
+      copy={dictionary.blogList}
+      articleReadLabel={dictionary.latestArticles.readArticle}
+      dateLocale={dictionary.locale.date}
+    />
+  </main>
+</Layout>

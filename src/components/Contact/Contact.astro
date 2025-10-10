@@ -1,40 +1,36 @@
 ---
 import ButtonLink from "@components/Button/ButtonLink.astro";
 import type { NavLinkProps } from "@components/Navbar/NavLink.astro";
+import type { UIStrings } from "@i18n/dictionaries";
 
-const CONTACT_LINKS = [
-  {
-    href: "https://www.linkedin.com/in/alfredoprograma/",
-    text: "LinkedIn",
-    featured: true,
-  },
-  {
-    href: "https://github.com/AlfredoPrograma",
-    text: "Github",
-  },
-  {
-    href: "/Alfredo-Arvelaez-CV.pdf",
-    text: "Download resume",
-    download: true,
-  },
-] satisfies (NavLinkProps &
-  Partial<{ featured: boolean; download: boolean }>)[];
+interface ContactLink extends NavLinkProps {
+  featured?: boolean;
+  download?: boolean;
+}
+
+interface ContactProps {
+  copy: UIStrings["contact"];
+  links: ContactLink[];
+}
+
+type Props = ContactProps;
+
+const { copy, links } = Astro.props;
 ---
 
 <section id="contact" class="py-20 px-6">
   <div class="max-w-4xl mx-auto text-center">
     <h2 class="text-3xl md:text-4xl font-light text-neutral-900 mb-8">
-      Let's work together
+      {copy.title}
     </h2>
     <p class="text-lg text-neutral-600 mb-12 max-w-2xl mx-auto leading-relaxed">
-      I'm always interested in new opportunities and collaborations. Feel free
-      to reach out if you'd like to discuss a project or just say hello
+      {copy.description}
     </p>
     <div
       class="flex flex-col sm:flex-row gap-8 justify-center items-center mb-8"
     >
       {
-        CONTACT_LINKS.map(({ href, text, featured, download }) => (
+        links.map(({ href, text, featured, download }) => (
           <ButtonLink
             size="lg"
             variant={featured ? "fill" : "outline"}
@@ -51,10 +47,12 @@ const CONTACT_LINKS = [
       <p
         class="text-neutral-600 max-w-2xl mx-auto leading-relaxed text-balance mb-8"
       >
-        Or send me an email at
+        {copy.emailIntro}
+        {" "}
         <a
-          href="mailto:alfredoprograma.dev@gmail.com"
-          class="text-blue-600 hover:underline">alfredoprograma.dev@gmail.com</a
+          href={`mailto:${copy.emailLinkText}`}
+          class="text-blue-600 hover:underline"
+          >{copy.emailLinkText}</a
         >
       </p>
     </div>

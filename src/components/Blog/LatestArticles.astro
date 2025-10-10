@@ -2,6 +2,18 @@
 import { getCollection } from "astro:content";
 import Article from "./Article.astro";
 import ButtonLink from "@components/Button/ButtonLink.astro";
+import { createLangHref, type Lang } from "@i18n/config";
+import type { UIStrings } from "@i18n/dictionaries";
+
+interface LatestArticlesProps {
+  lang: Lang;
+  copy: UIStrings["latestArticles"];
+  dateLocale: string;
+}
+
+type Props = LatestArticlesProps;
+
+const { lang, copy, dateLocale } = Astro.props;
 
 const LATEST_ARTICLES_LIMIT = 5;
 const articles = await getCollection("articles");
@@ -15,25 +27,30 @@ const latestArticles = articles
   <div class="max-w-4xl mx-auto">
     <div class="text-center mb-12">
       <h2 class="text-3xl md:text-4xl font-light text-neutral-900 mb-4">
-        Latest articles
+        {copy.title}
       </h2>
       <p class="text-lg text-neutral-600 max-w-2xl mx-auto leading-relaxed">
-        Thoughts on development, cloud design, and the ever-evolving backend,
-        infrastructure and devops topics
+        {copy.description}
       </p>
     </div>
 
     <div class="space-y-8">
       {
         latestArticles.map((article) => (
-          <Article {...article.data} slug={article.id} />
+          <Article
+            {...article.data}
+            slug={article.id}
+            lang={lang}
+            readLabel={copy.readArticle}
+            dateLocale={dateLocale}
+          />
         ))
       }
     </div>
 
     <div class="text-center mt-12">
-      <ButtonLink href="/blog" variant="outline" size="lg">
-        View all
+      <ButtonLink href={createLangHref(lang, "/blog")} variant="outline" size="lg">
+        {copy.viewAll}
       </ButtonLink>
     </div>
   </div>

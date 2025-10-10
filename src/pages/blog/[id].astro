@@ -1,46 +1,16 @@
 ---
-import Prose from "@components/Blog/Prose.astro";
-import Chip from "@components/Chip/Chip.astro";
-import Navbar from "@components/Navbar/Navbar.astro";
-import Layout from "@layouts/Layout.astro";
-import { getCollection, render } from "astro:content";
+import { getCollection } from "astro:content";
+import { DEFAULT_LANG } from "@i18n/config";
+export const prerender = true;
 
 export async function getStaticPaths() {
   const articles = await getCollection("articles");
 
   return articles.map((article) => ({
     params: { id: article.id },
-    props: { article },
   }));
 }
 
-const { article } = Astro.props;
-const { Content } = await render(article);
+const { id } = Astro.params;
+return Astro.redirect(`/${DEFAULT_LANG}/blog/${id}`, 308);
 ---
-
-<Layout title=`Blog | ${article.data.title}`>
-  <Navbar />
-
-  <main class="pt-14">
-    <div class="py-20 px-6 max-w-4xl mx-auto">
-      <header class="mb-4 pb-6 border-b border-neutral-600">
-        <a href="/blog" class="text-sm mb-2 block underline">Back to blog</a>
-
-        <h1 class="text-3xl md:text-4xl font-light text-neutral-900 mb-4">
-          {article.data.title}
-        </h1>
-        <p class="text-lg italic text-neutral-600 leading-relaxed mb-4">
-          {article.data.excerpt}
-        </p>
-
-        <div class="flex flex-wrap gap-2">
-          {article.data.tags.map((text) => <Chip>{text}</Chip>)}
-        </div>
-      </header>
-
-      <Prose>
-        <Content />
-      </Prose>
-    </div>
-  </main>
-</Layout>

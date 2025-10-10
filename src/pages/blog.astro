@@ -1,13 +1,6 @@
 ---
-import ArticlesList from "@components/Blog/ArticlesList.astro";
-import Navbar from "@components/Navbar/Navbar.astro";
-import Layout from "@layouts/Layout.astro";
+import { DEFAULT_LANG } from "@i18n/config";
+export const prerender = true;
+
+return Astro.redirect(`/${DEFAULT_LANG}/blog`, 308);
 ---
-
-<Layout title="Blog | AlfredoPrograma">
-  <Navbar />
-
-  <main class="pt-14">
-    <ArticlesList />
-  </main>
-</Layout>

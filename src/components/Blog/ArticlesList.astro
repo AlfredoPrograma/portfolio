@@ -1,6 +1,19 @@
 ---
 import { getCollection } from "astro:content";
 import Article from "./Article.astro";
+import type { UIStrings } from "@i18n/dictionaries";
+import type { Lang } from "@i18n/config";
+
+interface ArticlesListProps {
+  lang: Lang;
+  copy: UIStrings["blogList"];
+  articleReadLabel: string;
+  dateLocale: string;
+}
+
+type Props = ArticlesListProps;
+
+const { lang, copy, articleReadLabel, dateLocale } = Astro.props;
 
 const articles = await getCollection("articles");
 const sortedArticles = articles.toSorted(
@@ -11,18 +24,23 @@ const sortedArticles = articles.toSorted(
 <section class="py-20 px-6 max-w-4xl mx-auto">
   <header class="text-center mb-12">
     <h2 class="text-3xl md:text-4xl font-light text-neutral-900 mb-4">
-      WebBlog
+      {copy.title}
     </h2>
     <p class="text-lg text-neutral-600 max-w-2xl mx-auto leading-relaxed">
-      Thoughts on development, cloud design, and the ever-evolving backend,
-      infrastructure and devops topics
+      {copy.description}
     </p>
   </header>
 
   <div class="space-y-8">
     {
       sortedArticles.map((article) => (
-        <Article {...article.data} slug={article.id} />
+        <Article
+          {...article.data}
+          slug={article.id}
+          lang={lang}
+          readLabel={articleReadLabel}
+          dateLocale={dateLocale}
+        />
       ))
     }
   </div>

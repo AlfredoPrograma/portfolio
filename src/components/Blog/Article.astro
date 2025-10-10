@@ -1,7 +1,8 @@
 ---
 import ButtonLink from "@components/Button/ButtonLink.astro";
 import Chip from "@components/Chip/Chip.astro";
-import { dateFormatter } from "@utils/date";
+import { formatDate } from "@utils/date";
+import { createLangHref, type Lang } from "@i18n/config";
 
 interface ArticleProps {
   date: Date;
@@ -11,9 +12,16 @@ interface ArticleProps {
   tags: string[];
 }
 
-type Props = ArticleProps;
+interface ArticleTranslations {
+  lang: Lang;
+  readLabel: string;
+  dateLocale: string;
+}
 
-const { date, excerpt, slug, tags, title } = Astro.props;
+type Props = ArticleProps & ArticleTranslations;
+
+const { date, excerpt, slug, tags, title, lang, readLabel, dateLocale } =
+  Astro.props;
 ---
 
 <article
@@ -21,13 +29,13 @@ const { date, excerpt, slug, tags, title } = Astro.props;
 >
   <div class="flex flex-col space-y-4">
     <header class="space-y-1">
-      <time class="text-xs text-neutral-500 block" datetime={date.toISOString()}
-        >{dateFormatter.format(date)}</time
-      >
+      <time class="text-xs text-neutral-500 block" datetime={date.toISOString()}>
+        {formatDate(date, dateLocale)}
+      </time>
       <h3
         class="text-2xl font-medium text-neutral-900 hover:text-neutral-700 transition-colors"
       >
-        <a href={`/blog/${slug}`} class="block">
+        <a href={createLangHref(lang, `/blog/${slug}`)} class="block">
           {title}
         </a>
       </h3>
@@ -40,7 +48,9 @@ const { date, excerpt, slug, tags, title } = Astro.props;
     </div>
 
     <div class="pt-2">
-      <ButtonLink href={`/blog/${slug}`}>Read article</ButtonLink>
+      <ButtonLink href={createLangHref(lang, `/blog/${slug}`)}>
+        {readLabel}
+      </ButtonLink>
     </div>
   </div>
 </article>
