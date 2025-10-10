@@ -4,7 +4,6 @@ import type { NavLinkProps } from "@components/Navbar/NavLink.astro";
 import type { UIStrings } from "@i18n/dictionaries";
 
 interface ContactLink extends NavLinkProps {
-  featured?: boolean;
   download?: boolean;
 }
 
@@ -23,18 +22,15 @@ const { copy, links } = Astro.props;
     <h2 class="text-3xl md:text-4xl font-light text-heading mb-8">
       {copy.title}
     </h2>
-    <p class="text-lg text-body mb-12 max-w-2xl mx-auto leading-relaxed">
+    <p class="text-lg text-body mb-8 max-w-2xl mx-auto leading-relaxed">
       {copy.description}
     </p>
-    <div class="flex flex-col sm:flex-row gap-8 justify-center items-center mb-8">
+    <div
+      class="flex flex-col sm:flex-row gap-8 justify-center items-center mb-8"
+    >
       {
-        links.map(({ href, text, featured, download }) => (
-          <ButtonLink
-            size="lg"
-            variant={featured ? "fill" : "outline"}
-            href={href}
-            download={download}
-          >
+        links.map(({ href, text, download }) => (
+          <ButtonLink size="lg" href={href} download={download}>
             {text}
           </ButtonLink>
         ))
@@ -45,7 +41,10 @@ const { copy, links } = Astro.props;
       <p class="text-body max-w-2xl mx-auto leading-relaxed text-balance">
         {copy.emailIntro}
         {" "}
-        <a href={`mailto:${copy.emailLinkText}`} class="text-blue-600 hover:underline">
+        <a
+          href={`mailto:${copy.emailLinkText}`}
+          class="text-blue-600 hover:underline"
+        >
           {copy.emailLinkText}
         </a>
       </p>

@@ -39,7 +39,6 @@ const latestArticles = articles
       {
         latestArticles.map((article) => (
           <Article
-            key={article.data.slug}
             date={article.data.date}
             excerpt={article.data.excerpt}
             slug={article.data.slug}
@@ -54,7 +53,7 @@ const latestArticles = articles
     </div>
 
     <div class="text-center mt-12">
-      <ButtonLink href={createLangHref(lang, "/blog")} variant="outline" size="lg">
+      <ButtonLink href={createLangHref(lang, "/blog")} size="lg">
         {copy.viewAll}
       </ButtonLink>
     </div>

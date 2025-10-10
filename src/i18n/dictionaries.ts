@@ -103,7 +103,7 @@ const ENGLISH_STRINGS: UIStrings = {
   experience: {
     title: "Professional experience",
     subtitle:
-      "Roles where I blend frontend craftsmanship, backend systems, and AWS to launch dependable financial products.",
+      "Roles where I blend frontend craftsmanship, backend systems, and AWS to launch dependable financial products",
     positions: [
       {
         company: "Magnet.cl",
@@ -180,7 +180,7 @@ const SPANISH_STRINGS: UIStrings = {
   experience: {
     title: "Experiencia profesional",
     subtitle:
-      "Roles donde combino frontend, backend y AWS para lanzar productos financieros confiables.",
+      "Roles donde combino frontend, backend y AWS para lanzar productos financieros confiables",
     positions: [
       {
         company: "Magnet.cl",
