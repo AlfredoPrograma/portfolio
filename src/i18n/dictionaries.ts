@@ -131,7 +131,7 @@ const ENGLISH_STRINGS: UIStrings = {
     ],
   },
   blogList: {
-    title: "WebBlog",
+    title: "Blog",
     description:
       "Thoughts on development, cloud design, and the ever-evolving backend, infrastructure and devops topics",
   },

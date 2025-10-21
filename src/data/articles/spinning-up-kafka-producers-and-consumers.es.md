@@ -1,10 +1,10 @@
 ---
 lang: "es"
-slug: "configurar-kafka-productores-y-consumidores"
+slug: "configura-kafka-con-productores-y-consumidores"
 canonicalSlug: "spinning-up-kafka"
-title: "Configurar un broker de eventos Kafka con productores y consumidores"
+title: "Configura un broker de eventos con Kafka, productores y consumidores"
 date: "2025-10-09"
-excerpt: "Entiende los fundamentos del event streaming con Kafka y cómo construir productores y consumidores en Go."
+excerpt: "Entiende los fundamentos del event streaming con Kafka y cómo construir productores y consumidores en Golang."
 tags: ["Kafka", "Microservicios", "Golang", "Docker"]
 ---
 
@@ -63,7 +63,7 @@ services:
 
 La configuración se ve extensa, pero deja un broker auto-contenido listo para manejar producción y consumo de eventos en tu máquina.
 
-## Construir un productor en Go
+## Construir un productor en Golang
 
 Con el broker listo, creamos un productor que envía eventos usando `confluent-kafka-go`:
 
@@ -117,7 +117,7 @@ func main() {
 
 El servidor HTTP lee el cuerpo de la petición y lo publica como evento en Kafka. En producción conviene definir contratos más estrictos (por ejemplo JSON Schema), pero esto sirve para ilustrar el flujo.
 
-## Construir un consumidor en Go
+## Construir un consumidor en Golang
 
 Creamos ahora un consumidor que se suscribe al mismo tópico y procesa los mensajes:
 
@@ -163,6 +163,6 @@ Este consumidor imprime cada evento recibido. En un sistema real podrías enviar
 
 ---
 
-Con esto tienes un flujo de eventos completo usando Kafka y Go. Aprendiste cómo productores, consumidores y el broker se coordinan para habilitar comunicación asíncrona escalable.
+Con esto tienes un flujo de eventos completo usando Kafka y Golang. Aprendiste cómo productores, consumidores y el broker se coordinan para habilitar comunicación asíncrona escalable.
 
 Kafka ofrece muchas más capacidades: tópicos particionados, grupos de consumidores, manejo de offsets y políticas de retención, entre otras. Algunas de ellas las exploraremos en futuros artículo.

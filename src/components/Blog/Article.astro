@@ -34,7 +34,9 @@ const href = createLangHref(lang, `/blog/${slug}`);
     aria-label={`${readLabel}: ${title}`}
     class="absolute inset-0 rounded-sm hidden md:block focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
   ></a>
-  <div class="relative z-10 flex flex-col space-y-4 pointer-events-auto md:pointer-events-none">
+  <div
+    class="relative z-10 flex flex-col space-y-4 pointer-events-auto md:pointer-events-none"
+  >
     <header class="space-y-1">
       <time class="text-xs text-muted block" datetime={date.toISOString()}>
         {formatDate(date, dateLocale)}
@@ -53,7 +55,7 @@ const href = createLangHref(lang, `/blog/${slug}`);
     </p>
 
     <div class="flex flex-wrap gap-2 md:mb-0">
-      {tags.map((text) => <Chip>{text}</Chip>)}
+      {tags.toSorted().map((text) => <Chip>{text}</Chip>)}
     </div>
 
     <div class="inline-flex self-start md:hidden">
