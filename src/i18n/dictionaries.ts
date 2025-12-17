@@ -25,7 +25,6 @@ type ExperienceItemStrings = {
   company: string;
   role: string;
   period: string;
-  description: string;
   highlights: string[];
 };
 
@@ -88,9 +87,9 @@ const ENGLISH_STRINGS: UIStrings = {
   },
   hero: {
     name: "Alfredo Arvelaez",
-    role: "Software Developer & Cloud Engineer",
+    role: "Cloud / DevOps Engineer",
     description:
-      "Cloud-focused developer who thrives at the intersection of backend engineering and infrastructure management, transforming business logic into high-performance systems",
+      "Cloud / DevOps Engineer with over three years of experience operating cloud native systems in production. Specialized in CI/CD, containers, Linux, and AWS infrastructure for scalable web and backend platforms.",
     cta: "Get in touch",
   },
   latestArticles: {
@@ -107,25 +106,41 @@ const ENGLISH_STRINGS: UIStrings = {
     positions: [
       {
         company: "Magnet.cl",
-        role: "Semi Senior Software Developer",
-        period: "Oct 2022 — Present",
-        description:
-          "Delivering end-to-end insurance and banking experiences for Chilean financial institutions alongside product and data teams",
+        role: "Cloud Engineer / DevOps",
+        period: "Nov 2023 - Present",
         highlights: [
-          "Designed and shipped a responsive insurance profitability simulator with React, TypeScript, and SASS to help business teams forecast performance.",
-          "Led the UI build for a retail banking recommendation engine, collaborating with data engineers to boost platform engagement by 10%.",
-          "Implemented AWS Rekognition facial authentication and orchestrated S3 + CloudFront delivery for a secure onboarding flow.",
+          "Initialized and configured optimized Linux servers for production grade web services over HTTP and HTTPS, ensuring reliability, security, and performance.",
+          "Designed and implemented CI/CD pipelines to automate test execution, container image builds, and application deployments, improving delivery speed and consistency.",
+          "Provisioned, configured, and managed cloud infrastructure across the organization, including compute resources, networking, security configurations, and storage services.",
+          "Implemented AWS services to support secure authentication flows and static asset delivery.",
         ],
       },
       {
-        company: "Ingeniust C.A",
-        role: "Junior Software Developer",
-        period: "Feb 2022 — Oct 2022",
-        description:
-          "Supported multiple greenfield initiatives by building modular interfaces and data services for fintech and ERP clients",
+        company: "Magnet.cl",
+        role: "Full Stack Developer",
+        period: "Oct 2022 — Nov 2023",
         highlights: [
-          "Implemented an ERP inventory management module improving traceability and stock control for 150+ products.",
-          "Built a personal finance platform with a React frontend and Laravel/PostgreSQL backend, enabling responsive dashboards for transaction insights.",
+          "Designed and supported a web based insurance simulator by exposing backend services and APIs that enabled profitability projections across multiple insurance products, collaborating with product teams to align system behavior with business requirements.",
+          "Contributed to the development of a product recommendation engine for retail banking users by implementing backend logic and data integrations to match customers with relevant financial products, enhancing customer personalization and platform engagement.",
+        ],
+      },
+      {
+        company: "Ingeniust",
+        role: "Full Stack Developer",
+        period: "Feb 2022 — Oct 2022",
+        highlights: [
+          "Implemented an inventory management module within a web based ERP system, enhancing transaction traceability and stock control for over 150 products, improving operational efficiency and audit readiness.",
+          "Designed and built the backend of a personal finance management platform using Golang and PostgreSQL, implementing complex business logic and transaction processing, and supporting a React based frontend with reliable APIs for financial data analysis and reporting.",
+        ],
+      },
+      {
+        company: "Classgap",
+        role: "Software Development Tutor",
+        period: "Oct 2021 — Feb 2022",
+        highlights: [
+          "Prepared over 30 students for online university projects and exams, resulting in improved academic performance and successful course completion.",
+          "Mentored junior and inexperienced developers by resolving technical questions and accelerating their learning and problem solving skills.",
+          "Earned 40 top rated reviews on the platform, demonstrating consistently high learner satisfaction and teaching effectiveness.",
         ],
       },
     ],
@@ -165,44 +180,60 @@ const SPANISH_STRINGS: UIStrings = {
   },
   hero: {
     name: "Alfredo Arvelaez",
-    role: "Desarrollador de Software y Cloud Engineer",
+    role: "Ingeniero Cloud / DevOps",
     description:
-      "Desarrollador enfocado en la nube que une backend e infraestructura para convertir la lógica de negocio en sistemas de alto rendimiento",
+      "Ingeniero Cloud / DevOps con más de tres años de experiencia operando sistemas cloud nativos en producción. Especializado en CI/CD, contenedores, Linux e infraestructura AWS para plataformas web y backend escalables.",
     cta: "Contáctame",
   },
   latestArticles: {
     title: "Últimos artículos",
     description:
-      "Ideas sobre desarrollo, arquitectura en la nube y temas de backend, infraestructura y DevOps",
+      "Ideas sobre desarrollo, diseño en la nube y los temas en constante evolución de backend, infraestructura y DevOps",
     viewAll: "Ver todos",
     readArticle: "Leer artículo",
   },
   experience: {
     title: "Experiencia profesional",
     subtitle:
-      "Roles donde combino frontend, backend y AWS para lanzar productos financieros confiables",
+      "Roles donde mezclo frontend, backend y AWS para lanzar productos financieros confiables",
     positions: [
       {
         company: "Magnet.cl",
-        role: "Semi Senior Software Developer",
-        period: "Oct 2022 — Presente",
-        description:
-          "Entrego experiencias de seguros y banca de manera integral para instituciones financieras chilenas, trabajando junto a equipos de producto y datos",
+        role: "Ingeniero Cloud / DevOps",
+        period: "Nov 2023 - Presente",
         highlights: [
-          "Diseñé y lancé un simulador de rentabilidad de seguros con React, TypeScript y SASS para ayudar al negocio a proyectar resultados.",
-          "Lideré la interfaz de un motor de recomendaciones bancarias, colaborando con data engineers para subir el uso de la plataforma en 10%.",
-          "Implementé autenticación facial con AWS Rekognition y coordiné la entrega con S3 + CloudFront para un onboarding seguro.",
+          "Inicialicé y configuré servidores Linux optimizados para servicios web en producción sobre HTTP y HTTPS, garantizando confiabilidad, seguridad y rendimiento.",
+          "Diseñé e implementé pipelines de CI/CD para automatizar la ejecución de pruebas, la construcción de imágenes de contenedores y los despliegues de aplicaciones, mejorando la velocidad y consistencia de entrega.",
+          "Provisioné, configuré y administré infraestructura en la nube para la organización, incluyendo cómputo, redes, configuraciones de seguridad y servicios de almacenamiento.",
+          "Implementé servicios de AWS para soportar flujos de autenticación seguros y la entrega de activos estáticos.",
         ],
       },
       {
-        company: "Ingeniust C.A",
-        role: "Junior Software Developer",
-        period: "Feb 2022 — Oct 2022",
-        description:
-          "Di soporte a iniciativas greenfield desarrollando interfaces modulares y servicios de datos para clientes fintech y ERP",
+        company: "Magnet.cl",
+        role: "Full Stack Developer",
+        period: "Oct 2022 — Nov 2023",
         highlights: [
-          "Implementé un módulo de inventario para un ERP web que mejoró la trazabilidad y control de stock de más de 150 productos.",
-          "Construí una plataforma de finanzas personales con frontend en React y backend en Laravel/PostgreSQL, ofreciendo dashboards responsivos para analizar transacciones.",
+          "Diseñé y di soporte a un simulador de seguros web exponiendo servicios backend y APIs que permitieron proyectar rentabilidad en múltiples productos, colaborando con producto para alinear el comportamiento con los requisitos de negocio.",
+          "Contribuí al desarrollo de un motor de recomendación para usuarios de banca retail implementando lógica backend e integraciones de datos para emparejar clientes con productos financieros relevantes, aumentando la personalización y el engagement de la plataforma.",
+        ],
+      },
+      {
+        company: "Ingeniust",
+        role: "Full Stack Developer",
+        period: "Feb 2022 — Oct 2022",
+        highlights: [
+          "Implementé un módulo de gestión de inventario dentro de un ERP web, mejorando la trazabilidad de transacciones y el control de stock de más de 150 productos, elevando la eficiencia operativa y la preparación para auditorías.",
+          "Diseñé y construí el backend de una plataforma de finanzas personales con Golang y PostgreSQL, implementando lógica de negocio y procesamiento de transacciones complejos, y soportando un frontend en React con APIs confiables para análisis y reportes financieros.",
+        ],
+      },
+      {
+        company: "Classgap",
+        role: "Tutor de Desarrollo de Software",
+        period: "Oct 2021 — Feb 2022",
+        highlights: [
+          "Preparé a más de 30 estudiantes para proyectos y exámenes universitarios en línea, logrando mejoras de rendimiento y aprobación de cursos.",
+          "Guié a desarrolladores junior y con poca experiencia resolviendo dudas técnicas y acelerando su aprendizaje y habilidades de resolución de problemas.",
+          "Obtuve 40 reseñas de máxima calificación en la plataforma, demostrando satisfacción constante de los estudiantes y eficacia al enseñar.",
         ],
       },
     ],
@@ -210,12 +241,12 @@ const SPANISH_STRINGS: UIStrings = {
   blogList: {
     title: "Blog",
     description:
-      "Ideas sobre desarrollo, arquitectura en la nube y temas de backend, infraestructura y DevOps",
+      "Ideas sobre desarrollo, arquitectura en la nube y los temas en constante evolución de backend, infraestructura y DevOps",
   },
   contact: {
     title: "Trabajemos juntos",
     description:
-      "Siempre estoy abierto a nuevas oportunidades y colaboraciones. Escríbeme si quieres conversar sobre un proyecto o simplemente saludar",
+      "Siempre estoy interesado en nuevas oportunidades y colaboraciones. Escríbeme si quieres conversar sobre un proyecto o simplemente saludar",
     emailIntro: "O envíame un correo a",
     emailLinkText: "alfredoprograma.dev@gmail.com",
     resumeCta: "Descargar CV",
